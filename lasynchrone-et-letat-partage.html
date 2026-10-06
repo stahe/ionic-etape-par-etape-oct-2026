@@ -1,0 +1,2011 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Introduction étape par étape au framework mobile [Ionic]">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/ionic-etape-par-etape-oct-2026/lasynchrone-et-letat-partage.html">
+      
+      
+        <link rel="prev" href="le-routage.html">
+      
+      
+        <link rel="next" href="internationalisation.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>6. L'asynchrone et l'état partagé - Introduction étape par étape au framework mobile [Ionic]</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Introduction étape par étape au framework mobile [Ionic]";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6-lasynchrone-et-letat-partage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Introduction étape par étape au framework mobile [Ionic]" class="md-header__button md-logo" aria-label="Introduction étape par étape au framework mobile [Ionic]" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction étape par étape au framework mobile [Ionic]
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6. L'asynchrone et l'état partagé
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/ionic-etape-par-etape-oct-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Introduction étape par étape au framework mobile [Ionic]" class="md-nav__button md-logo" aria-label="Introduction étape par étape au framework mobile [Ionic]" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Introduction étape par étape au framework mobile [Ionic]
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/ionic-etape-par-etape-oct-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mise-en-place-de-lenvironnement-de-travail.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Mise en place de l'environnement de travail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="premiers-pas-avec-ionic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Premiers pas avec Ionic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="les-composants.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Les composants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="le-routage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Le routage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. L'asynchrone et l'état partagé
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="lasynchrone-et-letat-partage.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. L'asynchrone et l'état partagé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-exemple-19-promesses-observables-et-minuteries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Exemple 19 : promesses, observables et minuteries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1. Exemple 19 : promesses, observables et minuteries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-la-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.1. La page
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-exemple-20-un-etat-partage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Exemple 20 : un état partagé
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2. Exemple 20 : un état partagé">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-le-panier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.1. Le panier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-les-preferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.2. Les préférences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-les-composants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.3. Les composants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#624-la-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.4. La page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#625-lexecution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.5. L&#x27;exécution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="internationalisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Internationalisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="le-serveur-rdvmedecins-une-boite-noire.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Le serveur RdvMedecins, une boîte noire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dialoguer-avec-le-serveur.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Dialoguer avec le serveur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion-intermediaire.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Conclusion intermédiaire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="etude-de-cas--le-client-ionic-de-lapplication-rdvmedecins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Étude de cas : le client Ionic de l'application RdvMedecins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deploiement.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Déploiement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Conclusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="annexes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Annexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="6-lasynchrone-et-letat-partage">6. <span style="color: #2e74b5">L&#x27;asynchrone et l&#x27;état partagé</span></h1>
+<h2 id="61-exemple-19-promesses-observables-et-minuteries">6.1. <span style="color: #2e74b5">Exemple 19 : promesses, observables et minuteries</span></h2>
+<p>Beaucoup de choses arrivent « plus tard » : les tics d&#x27;une minuterie, les frappes au clavier, la réponse d&#x27;un serveur. Une application <em>[Ionic]</em> dispose de deux types pour cela :</p>
+<ul>
+<li><strong><em>[Promise&lt;T&gt;]</em></strong>, celui de <em>[JavaScript]</em> : UNE valeur, plus tard (la réponse d&#x27;un serveur, le choix fait dans une fenêtre). Les mots-clés <strong><em>[async]</em></strong> et <strong><em>[await]</em></strong> permettent de l&#x27;attendre sans bloquer l&#x27;application. C&#x27;est le <em>[Future]</em> de <em>[Dart]</em> ;</li>
+<li><strong><em>[Observable&lt;T&gt;]</em></strong>, celui de la bibliothèque <em>[RxJS]</em>, livrée avec <em>[Angular]</em> : une SUITE de valeurs, au fil du temps (des tics, des frappes, des messages...), qu&#x27;on transforme par des <strong>opérateurs</strong> (<strong><em>[map]</em></strong>, <strong><em>[take]</em></strong>, <strong><em>[debounceTime]</em></strong>, <strong><em>[switchMap]</em></strong>...). C&#x27;est le <em>[Stream]</em> de <em>[Dart]</em>. <em>[JavaScript]</em> a aussi ses suites asynchrones : les <strong>générateurs asynchrones</strong> (<strong><em>[async function*]</em></strong>), le pendant des fonctions <strong><em>[async*]</em></strong> de <em>[Dart]</em>.</li>
+</ul>
+<p>Pour les afficher, <em>[Angular]</em> offre trois outils, les pendants de <em>[FutureBuilder]</em> et de <em>[StreamBuilder]</em> : le <strong>pipe</strong> <strong><em>[async]</em></strong> (un <strong><em>[Observable]</em></strong> lu dans le gabarit), <strong><em>[toSignal()]</em></strong> (un <strong><em>[Observable]</em></strong> transformé en signal) et <strong><em>[resource()]</em></strong> (une <strong><em>[Promise]</em></strong> transformée en signaux). Et pour ce qui doit arriver après un délai : <strong><em>[setTimeout]</em></strong>, ou les minuteries de <em>[RxJS]</em> (<strong><em>[timer]</em></strong>, <strong><em>[interval]</em></strong>).</p>
+<h3 id="611-la-page">6.1.1. <span style="color: #1f4d78">La page</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-0-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-0-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-0-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-0-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-0-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-0-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-0-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-0-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-0-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-0-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-0-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-0-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-0-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-0-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-0-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-0-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-0-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-0-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-0-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-0-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-0-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-0-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-0-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-0-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-0-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-0-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-0-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-0-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-0-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-0-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-0-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-0-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-0-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-0-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-0-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-0-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-0-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-0-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-0-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-0-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-0-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-0-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span>
+<span class="normal"><a href="#__codelineno-0-113">113</a></span>
+<span class="normal"><a href="#__codelineno-0-114">114</a></span>
+<span class="normal"><a href="#__codelineno-0-115">115</a></span>
+<span class="normal"><a href="#__codelineno-0-116">116</a></span>
+<span class="normal"><a href="#__codelineno-0-117">117</a></span>
+<span class="normal"><a href="#__codelineno-0-118">118</a></span>
+<span class="normal"><a href="#__codelineno-0-119">119</a></span>
+<span class="normal"><a href="#__codelineno-0-120">120</a></span>
+<span class="normal"><a href="#__codelineno-0-121">121</a></span>
+<span class="normal"><a href="#__codelineno-0-122">122</a></span>
+<span class="normal"><a href="#__codelineno-0-123">123</a></span>
+<span class="normal"><a href="#__codelineno-0-124">124</a></span>
+<span class="normal"><a href="#__codelineno-0-125">125</a></span>
+<span class="normal"><a href="#__codelineno-0-126">126</a></span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span>
+<span class="normal"><a href="#__codelineno-0-128">128</a></span>
+<span class="normal"><a href="#__codelineno-0-129">129</a></span>
+<span class="normal"><a href="#__codelineno-0-130">130</a></span>
+<span class="normal"><a href="#__codelineno-0-131">131</a></span>
+<span class="normal"><a href="#__codelineno-0-132">132</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1">// src/app/ex19-asynchrone/ex19.page.ts - promesses, observables, minuteries</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="c1">// -------------------------------------------------------------------------</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1">// Beaucoup de choses arrivent "plus tard" : les tics d'une minuterie, les</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1">// frappes au clavier, la réponse d'un serveur. On dispose de deux types :</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1">//   - Promise (JavaScript) : UNE valeur, plus tard (la réponse d'un</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1">//     serveur) ; async / await pour l'attendre ;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="c1">//   - Observable (bibliothèque RxJS, livrée avec Angular) : une SUITE de</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="c1">//     valeurs, au fil du temps (des tics, des frappes...), qu'on transforme</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="c1">//     par des "opérateurs" (map, take, debounceTime, switchMap...).</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="c1">// Pour les afficher, Angular offre le pipe async (un Observable dans le</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="c1">// gabarit), toSignal() (un Observable devenu signal) et resource() (une</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="c1">// Promise devenue signal).</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AsyncPipe</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/common'</span><span class="p">;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">resource</span><span class="p">,</span><span class="w"> </span><span class="nx">signal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/core'</span><span class="p">;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">takeUntilDestroyed</span><span class="p">,</span><span class="w"> </span><span class="nx">toSignal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/core/rxjs-interop'</span><span class="p">;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">  </span><span class="nx">IonBackButton</span><span class="p">,</span><span class="w"> </span><span class="nx">IonButtons</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCard</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardContent</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardSubtitle</span><span class="p">,</span><span class="w"> </span><span class="nx">IonContent</span><span class="p">,</span><span class="w"> </span><span class="nx">IonHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">IonInput</span><span class="p">,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">  </span><span class="nx">IonNote</span><span class="p">,</span><span class="w"> </span><span class="nx">IonTitle</span><span class="p">,</span><span class="w"> </span><span class="nx">IonToolbar</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@ionic/angular'</span><span class="p">;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">debounceTime</span><span class="p">,</span><span class="w"> </span><span class="nx">finalize</span><span class="p">,</span><span class="w"> </span><span class="kr">from</span><span class="p">,</span><span class="w"> </span><span class="nx">map</span><span class="p">,</span><span class="w"> </span><span class="nx">Observable</span><span class="p">,</span><span class="w"> </span><span class="k">of</span><span class="p">,</span><span class="w"> </span><span class="nx">Subject</span><span class="p">,</span><span class="w"> </span><span class="nx">switchMap</span><span class="p">,</span><span class="w"> </span><span class="nx">take</span><span class="p">,</span><span class="w"> </span><span class="nx">tap</span><span class="p">,</span><span class="w"> </span><span class="nx">timer</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'rxjs'</span><span class="p">;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="kd">const</span><span class="w"> </span><span class="nx">medecins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">'Marie PELISSIER'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Paul TATOU'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Sophie DUPONT'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Jacques DURAND'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Martine PELLETIER'</span><span class="p">];</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="c1">// une minuterie sous forme de Promise : elle se termine au bout de ms millisecondes</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="kd">function</span><span class="w"> </span><span class="nx">attendre</span><span class="p">(</span><span class="nx">ms</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="p">}</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="c1">// un "serveur" simulé : la réponse (une Promise) arrive après un délai aléatoire</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">rechercher</span><span class="p">(</span><span class="nx">texte</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">attendre</span><span class="p">(</span><span class="mf">200</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">600</span><span class="p">));</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">medecins</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">m</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">m</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="nx">texte</span><span class="p">));</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="p">}</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="c1">// 1a. un GÉNÉRATEUR ASYNCHRONE (async function*, avec une étoile) : chaque</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="c1">// yield ENVOIE une valeur à celui qui le parcourt (for await...of)</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="o">*</span><span class="w"> </span><span class="nx">compteARebours</span><span class="p">(</span><span class="nx">depart</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">AsyncGenerator</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">reste</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">depart</span><span class="p">;</span><span class="w"> </span><span class="nx">reste</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">reste</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">    </span><span class="k">yield</span><span class="w"> </span><span class="nx">reste</span><span class="p">;</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">reste</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">attendre</span><span class="p">(</span><span class="mf">1000</span><span class="p">);</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="p">}</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="c1">// "15:30:45"</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="kd">const</span><span class="w"> </span><span class="nx">heureCourante</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toTimeString</span><span class="p">().</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">);</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="kd">@Component</span><span class="p">({</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">'app-ex19'</span><span class="p">,</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="nx">AsyncPipe</span><span class="p">,</span><span class="w"> </span><span class="nx">IonHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">IonToolbar</span><span class="p">,</span><span class="w"> </span><span class="nx">IonButtons</span><span class="p">,</span><span class="w"> </span><span class="nx">IonBackButton</span><span class="p">,</span><span class="w"> </span><span class="nx">IonTitle</span><span class="p">,</span><span class="w"> </span><span class="nx">IonContent</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCard</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardHeader</span><span class="p">,</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="w">    </span><span class="nx">IonCardSubtitle</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardContent</span><span class="p">,</span><span class="w"> </span><span class="nx">IonInput</span><span class="p">,</span><span class="w"> </span><span class="nx">IonNote</span><span class="p">,</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">'./ex19.page.html'</span><span class="p">,</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">  </span><span class="nx">styles</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sb">    .nombre { font-size: 2em; color: var(--ion-text-color); }</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sb">    .journal { font-size: 12px; }</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sb">  `</span><span class="p">,</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="p">})</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Ex19Page</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">journal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="w">  </span><span class="c1">// 1a. le générateur, transformé en Observable par from() ; le gabarit</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">  </span><span class="c1">// l'affiche avec le pipe async. Créé UNE fois, dans un champ</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">rebours$</span><span class="o">:</span><span class="w"> </span><span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="nx">compteARebours</span><span class="p">(</span><span class="mf">20</span><span class="p">));</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="w">  </span><span class="c1">// 1b. le même compte à rebours, avec les opérateurs de RxJS : timer(0, 1000)</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="w">  </span><span class="c1">// émet 0, 1, 2... toutes les secondes ; take(21) s'arrête après 21 valeurs ;</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="w">  </span><span class="c1">// map les transforme (0 -&gt; 20, 1 -&gt; 19...). toSignal : un signal qui vaut</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="w">  </span><span class="c1">// la dernière valeur reçue (undefined avant la première)</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">rebours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">toSignal</span><span class="p">(</span><span class="nx">timer</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1000</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">take</span><span class="p">(</span><span class="mf">21</span><span class="p">),</span><span class="w"> </span><span class="nx">map</span><span class="p">((</span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">i</span><span class="p">)));</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="w">  </span><span class="c1">// 3. une Promise qui se termine au bout d'une seconde, suivie par resource() :</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="w">  </span><span class="c1">// un objet à signaux (isLoading(), hasValue(), value(), error()...)</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">resource</span><span class="p">({</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="w">    </span><span class="nx">loader</span><span class="o">:</span><span class="w"> </span><span class="kt">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">attendre</span><span class="p">(</span><span class="mf">1000</span><span class="p">);</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s1">'trois (une seconde plus tard)'</span><span class="p">;</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="w">  </span><span class="p">});</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="w">  </span><span class="c1">// 2. la recherche au fil de la frappe : un Subject est un Observable dans</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="w">  </span><span class="c1">// lequel on POUSSE soi-même les valeurs (next) : ici, chaque frappe</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">frappes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Subject</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">resultats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">frappes</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="w">      </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="w">        </span><span class="c1">// l'ANTI-REBOND : une valeur n'est transmise qu'après 400 ms sans</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="w">        </span><span class="c1">// nouvelle frappe ; les frappes plus rapprochées sont oubliées</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="w">        </span><span class="nx">debounceTime</span><span class="p">(</span><span class="mf">400</span><span class="p">),</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="w">        </span><span class="nx">map</span><span class="p">((</span><span class="nx">texte</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">texte</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">()),</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="w">        </span><span class="c1">// switchMap : chaque texte lance une recherche (un Observable) ; une</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="w">        </span><span class="c1">// NOUVELLE recherche ABANDONNE la précédente, dont la réponse ne sera</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="w">        </span><span class="c1">// jamais transmise : pas de réponse "périmée"</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="w">        </span><span class="nx">switchMap</span><span class="p">((</span><span class="nx">texte</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lancer</span><span class="p">(</span><span class="nx">texte</span><span class="p">)),</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="w">        </span><span class="c1">// l'abonnement prend fin quand la page est détruite</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="w">        </span><span class="nx">takeUntilDestroyed</span><span class="p">(),</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="w">      </span><span class="p">)</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="w">      </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">trouves</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">resultats</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">trouves</span><span class="p">));</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">tracer</span><span class="p">(</span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">journal</span><span class="p">.</span><span class="nx">update</span><span class="p">((</span><span class="nx">lignes</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">lignes</span><span class="p">,</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">heureCourante</span><span class="p">()</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">]);</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="w">  </span><span class="c1">// appelée à chaque frappe</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="w">  </span><span class="nx">saisie</span><span class="p">(</span><span class="nx">texte</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">frappes</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">texte</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s1">''</span><span class="p">);</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">lancer</span><span class="p">(</span><span class="nx">texte</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Observable</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="w">    </span><span class="c1">// moins de deux lettres : pas de recherche, aucun résultat</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">texte</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">of</span><span class="p">([]);</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">tracer</span><span class="p">(</span><span class="sb">`recherche envoyée : « </span><span class="si">${</span><span class="nx">texte</span><span class="si">}</span><span class="sb"> »`</span><span class="p">);</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">recue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="w">    </span><span class="c1">// from(Promise) : un Observable qui émet la valeur de la Promise, puis se termine</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kr">from</span><span class="p">(</span><span class="nx">rechercher</span><span class="p">(</span><span class="nx">texte</span><span class="p">)).</span><span class="nx">pipe</span><span class="p">(</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="w">      </span><span class="nx">tap</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="nx">recue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)),</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a><span class="w">      </span><span class="c1">// finalize : appelé quand l'Observable se termine OU qu'on s'en désabonne</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a><span class="w">      </span><span class="c1">// (c'est ce que fait switchMap quand une nouvelle recherche arrive)</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="w">      </span><span class="nx">finalize</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">recue</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">tracer</span><span class="p">(</span><span class="sb">`réponse ignorée (périmée) : « </span><span class="si">${</span><span class="nx">texte</span><span class="si">}</span><span class="sb"> »`</span><span class="p">);</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="w">      </span><span class="p">}),</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="w">    </span><span class="p">);</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span>
+<span class="normal"><a href="#__codelineno-1-44">44</a></span>
+<span class="normal"><a href="#__codelineno-1-45">45</a></span>
+<span class="normal"><a href="#__codelineno-1-46">46</a></span>
+<span class="normal"><a href="#__codelineno-1-47">47</a></span>
+<span class="normal"><a href="#__codelineno-1-48">48</a></span>
+<span class="normal"><a href="#__codelineno-1-49">49</a></span>
+<span class="normal"><a href="#__codelineno-1-50">50</a></span>
+<span class="normal"><a href="#__codelineno-1-51">51</a></span>
+<span class="normal"><a href="#__codelineno-1-52">52</a></span>
+<span class="normal"><a href="#__codelineno-1-53">53</a></span>
+<span class="normal"><a href="#__codelineno-1-54">54</a></span>
+<span class="normal"><a href="#__codelineno-1-55">55</a></span>
+<span class="normal"><a href="#__codelineno-1-56">56</a></span>
+<span class="normal"><a href="#__codelineno-1-57">57</a></span>
+<span class="normal"><a href="#__codelineno-1-58">58</a></span>
+<span class="normal"><a href="#__codelineno-1-59">59</a></span>
+<span class="normal"><a href="#__codelineno-1-60">60</a></span>
+<span class="normal"><a href="#__codelineno-1-61">61</a></span>
+<span class="normal"><a href="#__codelineno-1-62">62</a></span>
+<span class="normal"><a href="#__codelineno-1-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cm">&lt;!-- ======================================================================</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="cm">     ex19.page.html - promesses, observables et minuteries</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="cm">     ====================================================================== --&gt;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="p">&lt;</span><span class="nt">ion-header</span><span class="p">&gt;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>  <span class="p">&lt;</span><span class="nt">ion-toolbar</span> <span class="na">color</span><span class="o">=</span><span class="s">"primary"</span><span class="p">&gt;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="p">&lt;</span><span class="nt">ion-buttons</span> <span class="na">slot</span><span class="o">=</span><span class="s">"start"</span><span class="p">&gt;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>      <span class="p">&lt;</span><span class="nt">ion-back-button</span> <span class="na">defaultHref</span><span class="o">=</span><span class="s">"/"</span> <span class="p">/&gt;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="p">&lt;/</span><span class="nt">ion-buttons</span><span class="p">&gt;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="p">&lt;</span><span class="nt">ion-title</span><span class="p">&gt;</span>Exemple 19 - l'asynchrone<span class="p">&lt;/</span><span class="nt">ion-title</span><span class="p">&gt;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>  <span class="p">&lt;/</span><span class="nt">ion-toolbar</span><span class="p">&gt;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="p">&lt;/</span><span class="nt">ion-header</span><span class="p">&gt;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="p">&lt;</span><span class="nt">ion-content</span> <span class="na">class</span><span class="o">=</span><span class="s">"ion-padding"</span><span class="p">&gt;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>  <span class="p">&lt;</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>    <span class="p">&lt;</span><span class="nt">ion-card-header</span><span class="p">&gt;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>      <span class="p">&lt;</span><span class="nt">ion-card-subtitle</span><span class="p">&gt;</span>Deux comptes à rebours (des Observable)<span class="p">&lt;/</span><span class="nt">ion-card-subtitle</span><span class="p">&gt;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>    <span class="p">&lt;/</span><span class="nt">ion-card-header</span><span class="p">&gt;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>    <span class="p">&lt;</span><span class="nt">ion-card-content</span><span class="p">&gt;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>      <span class="cm">&lt;!-- le pipe async s'abonne à l'Observable, affiche chaque nouvelle</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="cm">           valeur, et se désabonne quand la page disparaît ; il vaut null</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="cm">           avant la première valeur. @let : une variable du gabarit --&gt;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a>      @let n = rebours$ | async;
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a>      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>async function* et pipe async : <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"nombre"</span><span class="p">&gt;</span>{{ n ?? '...' }}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a>      <span class="cm">&lt;!-- le signal : undefined avant la première valeur --&gt;</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a>      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>RxJS et toSignal() : <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"nombre"</span><span class="p">&gt;</span>{{ rebours() ?? '...' }}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a>    <span class="p">&lt;/</span><span class="nt">ion-card-content</span><span class="p">&gt;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a>  <span class="p">&lt;/</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a>  <span class="p">&lt;</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a>    <span class="p">&lt;</span><span class="nt">ion-card-header</span><span class="p">&gt;</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a>      <span class="p">&lt;</span><span class="nt">ion-card-subtitle</span><span class="p">&gt;</span>Une recherche au fil de la frappe (anti-rebond, réponses périmées)<span class="p">&lt;/</span><span class="nt">ion-card-subtitle</span><span class="p">&gt;</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a>    <span class="p">&lt;/</span><span class="nt">ion-card-header</span><span class="p">&gt;</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a>    <span class="p">&lt;</span><span class="nt">ion-card-content</span><span class="p">&gt;</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a>      <span class="cm">&lt;!-- (ionInput) : à chaque frappe --&gt;</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a>      <span class="p">&lt;</span><span class="nt">ion-input</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"au moins deux lettres : pel, dur..."</span> <span class="err">(</span><span class="na">ionInput</span><span class="err">)="</span><span class="na">saisie</span><span class="err">($</span><span class="na">event</span><span class="err">.</span><span class="na">detail</span><span class="err">.</span><span class="na">value</span><span class="err">)"</span> <span class="p">/&gt;</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a>      @for (r of resultats(); track r) {
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a>        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>• {{ r }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a>      } @empty {
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a>        <span class="p">&lt;</span><span class="nt">ion-note</span><span class="p">&gt;</span>aucun résultat<span class="p">&lt;/</span><span class="nt">ion-note</span><span class="p">&gt;</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a>      }
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a>    <span class="p">&lt;/</span><span class="nt">ion-card-content</span><span class="p">&gt;</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a>  <span class="p">&lt;/</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44"></a>
+<a id="__codelineno-1-45" name="__codelineno-1-45"></a>  <span class="p">&lt;</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46"></a>    <span class="p">&lt;</span><span class="nt">ion-card-header</span><span class="p">&gt;</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47"></a>      <span class="p">&lt;</span><span class="nt">ion-card-subtitle</span><span class="p">&gt;</span>Attendre une Promise (resource)<span class="p">&lt;/</span><span class="nt">ion-card-subtitle</span><span class="p">&gt;</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48"></a>    <span class="p">&lt;/</span><span class="nt">ion-card-header</span><span class="p">&gt;</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49"></a>    <span class="p">&lt;</span><span class="nt">ion-card-content</span><span class="p">&gt;</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50"></a>      <span class="cm">&lt;!-- tant que la Promise n'est pas terminée : le contenu d'attente --&gt;</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51"></a>      @if (message.hasValue()) {
+<a id="__codelineno-1-52" name="__codelineno-1-52"></a>        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>reçu : {{ message.value() }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53"></a>      } @else {
+<a id="__codelineno-1-54" name="__codelineno-1-54"></a>        <span class="p">&lt;</span><span class="nt">ion-note</span><span class="p">&gt;</span>en attente...<span class="p">&lt;/</span><span class="nt">ion-note</span><span class="p">&gt;</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55"></a>      }
+<a id="__codelineno-1-56" name="__codelineno-1-56"></a>    <span class="p">&lt;/</span><span class="nt">ion-card-content</span><span class="p">&gt;</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57"></a>  <span class="p">&lt;/</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58"></a>
+<a id="__codelineno-1-59" name="__codelineno-1-59"></a>  <span class="p">&lt;</span><span class="nt">h6</span><span class="p">&gt;</span>Journal<span class="p">&lt;/</span><span class="nt">h6</span><span class="p">&gt;</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60"></a>  @for (ligne of journal(); track $index) {
+<a id="__codelineno-1-61" name="__codelineno-1-61"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"journal"</span><span class="p">&gt;</span>{{ $index + 1 }}. {{ ligne }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62"></a>  }
+<a id="__codelineno-1-63" name="__codelineno-1-63"></a><span class="p">&lt;/</span><span class="nt">ion-content</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>Les outils :</p>
+<ul>
+<li>lignes 28-30 (.ts) : une minuterie sous forme de <strong><em>[Promise]</em></strong>. <strong><em>[new Promise(...)]</em></strong> reçoit une fonction qui démarre le travail et appellera <strong><em>[resolve]</em></strong> quand il sera fini ; ici, <strong><em>[setTimeout]</em></strong> l&#x27;appelle au bout de <strong><em>[ms]</em></strong> millisecondes. <strong><em>[await attendre(1000)]</em></strong> attend donc une seconde, sans bloquer l&#x27;application (c&#x27;était <strong><em>[Future.delayed]</em></strong> avec <em>[Dart]</em>) ;</li>
+<li>lignes 33-36 (.ts) : un « serveur » simulé : une fonction <strong><em>[async]</em></strong>, qui rend une <strong><em>[Promise]</em></strong> ; sa réponse arrive après un délai aléatoire (entre 200 et 800 millisecondes) ;</li>
+<li>lignes 40-45 (.ts) : un <strong>générateur asynchrone</strong> : une fonction <strong><em>[async function*]</em></strong> (avec une étoile). Chaque <strong><em>[yield]</em></strong> ENVOIE une valeur à celui qui parcourt le générateur ; entre deux valeurs, la fonction attend une seconde. On peut le parcourir avec une boucle <strong><em>[for await (const n of compteARebours(20))]</em></strong>.</li>
+</ul>
+<p>Le premier compte à rebours :</p>
+<ul>
+<li>ligne 67 (.ts) : le générateur, transformé en <strong><em>[Observable]</em></strong> par <strong><em>[from()]</em></strong>, qui accepte un générateur asynchrone, une <strong><em>[Promise]</em></strong>, un tableau... Par convention, le nom d&#x27;une variable qui contient un <strong><em>[Observable]</em></strong> finit par <strong><em>[$]</em></strong> ;</li>
+<li>ligne 23 (html) : le pipe <strong><em>[async]</em></strong> s&#x27;abonne à l&#x27;<strong><em>[Observable]</em></strong>, affiche chaque nouvelle valeur, et se désabonne tout seul quand la page disparaît ; il vaut <strong><em>[null]</em></strong> avant la première valeur. <strong><em>[@let n = ...]</em></strong> déclare une variable du gabarit, lue ligne 24 (<strong><em>[n ?? &#x27;...&#x27;]</em></strong> : trois points tant que <strong><em>[n]</em></strong> vaut <strong><em>[null]</em></strong>). Comme avec <em>[Flutter]</em>, l&#x27;<strong><em>[Observable]</em></strong> est créé UNE fois, dans un champ de la classe : si le gabarit appelait une méthode qui le crée, chaque mise à jour de l&#x27;écran relancerait le compte à rebours !</li>
+</ul>
+<p>Le second, avec les opérateurs de <em>[RxJS]</em> :</p>
+<ul>
+<li>ligne 73 (.ts) : <strong><em>[timer(0, 1000)]</em></strong> émet 0 tout de suite, puis 1, 2, 3... toutes les secondes ; la méthode <strong><em>[pipe]</em></strong> lui applique des opérateurs, l&#x27;un après l&#x27;autre : <strong><em>[take(21)]</em></strong> ne garde que les 21 premières valeurs (puis l&#x27;<strong><em>[Observable]</em></strong> se termine) ; <strong><em>[map]</em></strong> transforme chaque valeur (0 donne 20, 1 donne 19...). <strong><em>[toSignal]</em></strong> s&#x27;abonne à l&#x27;<strong><em>[Observable]</em></strong> et en fait un <strong>signal</strong>, qui vaut la dernière valeur reçue (<strong><em>[undefined]</em></strong> avant la première) ; il se désabonne quand la page est détruite ;</li>
+<li>ligne 26 (html) : le signal se lit comme tous les signaux.</li>
+</ul>
+<p>La <strong><em>[Promise]</em></strong> attendue :</p>
+<ul>
+<li>lignes 77-82 (.ts) : <strong><em>[resource()]</em></strong> reçoit une fonction <strong><em>[loader]</em></strong> qui rend une <strong><em>[Promise]</em></strong>, la lance, et expose son état sous forme de signaux : <strong><em>[isLoading()]</em></strong>, <strong><em>[hasValue()]</em></strong>, <strong><em>[value()]</em></strong>, <strong><em>[error()]</em></strong>. Si l&#x27;on donnait une option <strong><em>[params]</em></strong>, une fonction qui lit des signaux, la ressource se rechargerait quand ils changent (le <strong><em>[loader]</em></strong>, lui, n&#x27;est pas suivi) : on la retrouvera pour interroger un serveur ;</li>
+<li>lignes 51-55 (html) : tant que la <strong><em>[Promise]</em></strong> n&#x27;est pas terminée, le contenu d&#x27;attente ; ensuite, sa valeur (c&#x27;était <strong><em>[FutureBuilder]</em></strong> et <strong><em>[ConnectionState.done]</em></strong>).</li>
+</ul>
+<p>La recherche au fil de la frappe :</p>
+<ul>
+<li>ligne 86 (.ts) : un <strong><em>[Subject]</em></strong> est un <strong><em>[Observable]</em></strong> dans lequel on POUSSE soi-même les valeurs (<strong><em>[next]</em></strong>) : ici, chaque frappe (lignes 111-113, appelée par l&#x27;événement <strong><em>[(ionInput)]</em></strong> du champ, ligne 36 du html) ;</li>
+<li>ligne 94 (.ts) : l&#x27;<strong>anti-rebond</strong> (« debounce ») : on attend que l&#x27;utilisateur fasse une pause avant d&#x27;interroger le serveur, au lieu d&#x27;envoyer une requête par touche. L&#x27;opérateur <strong><em>[debounceTime(400)]</em></strong> ne transmet une valeur qu&#x27;après 400 millisecondes sans nouvelle valeur : les frappes plus rapprochées sont oubliées. Avec <em>[Flutter]</em>, il fallait annuler et relancer soi-même une minuterie (<strong><em>[Timer]</em></strong>) à chaque frappe ;</li>
+<li>ligne 95 (.ts) : le texte, sans espaces autour, en minuscules ;</li>
+<li>ligne 99 (.ts) : les réponses <strong>périmées</strong>. Une réponse qui arrive APRÈS qu&#x27;on a lancé une autre recherche doit être ignorée : sinon, la réponse lente d&#x27;une vieille recherche écraserait celle de la nouvelle. L&#x27;opérateur <strong><em>[switchMap]</em></strong> s&#x27;en charge : pour chaque texte, il appelle <strong><em>[lancer]</em></strong>, qui rend un <strong><em>[Observable]</em></strong> (la recherche) ; quand un nouveau texte arrive, il se DÉSABONNE de la recherche précédente, dont la réponse ne sera jamais transmise, puis lance la nouvelle. Avec <em>[Flutter]</em>, il fallait numéroter les recherches et comparer les numéros ;</li>
+<li>ligne 101 (.ts) : <strong><em>[takeUntilDestroyed()]</em></strong> met fin à l&#x27;abonnement quand la page est détruite : sans lui, le <strong><em>[Subject]</em></strong> et ses opérateurs continueraient de vivre (c&#x27;était le <strong><em>[dispose]</em></strong> de <em>[Flutter]</em>). Il doit être appelé dans un « contexte d&#x27;injection » : ici, le constructeur ;</li>
+<li>ligne 103 (.ts) : <strong><em>[subscribe]</em></strong> s&#x27;abonne à l&#x27;<strong><em>[Observable]</em></strong> : rien ne se passe tant que personne ne s&#x27;abonne. Chaque liste de résultats est rangée dans un signal, que le gabarit affiche (lignes 37-41 du html) ;</li>
+<li>lignes 117-119 (.ts) : moins de deux lettres : pas de recherche ; <strong><em>[of([])]</em></strong> est un <strong><em>[Observable]</em></strong> qui émet tout de suite une liste vide ;</li>
+<li>lignes 123-130 (.ts) : la recherche : la <strong><em>[Promise]</em></strong> du serveur, transformée en <strong><em>[Observable]</em></strong> par <strong><em>[from()]</em></strong>. <strong><em>[tap]</em></strong> exécute une action au passage, sans modifier la valeur : on note que la réponse est arrivée. <strong><em>[finalize]</em></strong> est appelé quand l&#x27;<strong><em>[Observable]</em></strong> se termine, ou quand on s&#x27;en désabonne : si la réponse n&#x27;était pas arrivée, c&#x27;est que <strong><em>[switchMap]</em></strong> a abandonné cette recherche, et on le note dans le journal.</li>
+</ul>
+<p>On tape « p », « pe », « pel » rapidement : une seule recherche part. Puis « du », suivi de « dup » avant la réponse de « du » : la recherche de « du » est abandonnée (sa réponse est ignorée) au moment où part celle de « dup ». À gauche, la page à son ouverture ; à droite, cinq secondes plus tard :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000043A000009268210AB98.png" width="280" height="605" style="display:inline-block; margin:4px;width:7.4cm;height:16.018cm;" class="odt-zoomable" data-zoom-src="images/100000000000043A000009268210AB98.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000043A000009267A6F4CD2.png" width="280" height="605" style="display:inline-block; margin:4px;width:7.4cm;height:16.018cm;" class="odt-zoomable" data-zoom-src="images/100000000000043A000009267A6F4CD2.png" /></td></tr></table>
+
+<p>Dans le journal, la ligne « réponse ignorée » précède la ligne « recherche envoyée : « dup » » : <strong><em>[switchMap]</em></strong> se désabonne de l&#x27;ancienne recherche avant de lancer la nouvelle.</p>
+<p>En <em>[Dart]</em>, <strong><em>[Future]</em></strong> et <strong><em>[Stream]</em></strong> sont dans la bibliothèque de base, et <strong><em>[async]</em></strong>, <strong><em>[await]</em></strong>, <strong><em>[async*]</em></strong>, <strong><em>[yield]</em></strong>, <strong><em>[await for]</em></strong> dans le langage. En <em>[JavaScript]</em>, <strong><em>[Promise]</em></strong>, <strong><em>[async]</em></strong>, <strong><em>[await]</em></strong> et les générateurs asynchrones sont aussi dans le langage ; mais pour les suites de valeurs, <em>[Angular]</em> s&#x27;appuie sur la bibliothèque <em>[RxJS]</em>, dont la centaine d&#x27;opérateurs règle en une ligne des problèmes comme l&#x27;anti-rebond ou les réponses périmées. Le client HTTP d&#x27;<em>[Angular]</em> (exemples 22 à 25) rend d&#x27;ailleurs des <strong><em>[Observable]</em></strong>. Depuis l&#x27;arrivée des signaux, <em>[Angular]</em> réserve <em>[RxJS]</em> aux flux d&#x27;événements, et passe par <strong><em>[toSignal]</em></strong> ou <strong><em>[resource]</em></strong> pour les afficher.</p>
+<h2 id="62-exemple-20-un-etat-partage">6.2. <span style="color: #2e74b5">Exemple 20 : un état partagé</span></h2>
+<p>Même question que dans les cours précédents : quelles « portées » pour les données d&#x27;une application ?</p>
+<ul>
+<li>l&#x27;état local d&#x27;un composant disparaît avec lui ;</li>
+<li>l&#x27;état d&#x27;un magasin (« store ») est partagé par tous les composants et survit à leur retrait... mais pas à l&#x27;arrêt de l&#x27;application ;</li>
+<li>l&#x27;état rangé sur l&#x27;appareil survit à l&#x27;arrêt de l&#x27;application.</li>
+</ul>
+<h3 id="621-le-panier">6.2.1. <span style="color: #1f4d78">Le panier</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span>
+<span class="normal"><a href="#__codelineno-2-38">38</a></span>
+<span class="normal"><a href="#__codelineno-2-39">39</a></span>
+<span class="normal"><a href="#__codelineno-2-40">40</a></span>
+<span class="normal"><a href="#__codelineno-2-41">41</a></span>
+<span class="normal"><a href="#__codelineno-2-42">42</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1">// src/app/ex20-etat-partage/magasins/panier.ts - un ÉTAT PARTAGÉ : un service</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1">// -------------------------------------------------------------------------</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">// Un "magasin" (store) est un état qui vit HORS des pages et des</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1">// composants, en UN seul exemplaire, partagé par tous ceux qui le lisent.</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1">// Avec Angular, c'est un SERVICE (cf. exemple 14) dont l'état est fait de</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1">// SIGNAUX. Organisation habituelle :</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="c1">//   - l'ÉTAT : des signaux PRIVÉS (_articles) ;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1">//   - leur lecture : des vues en lecture seule (asReadonly) ;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1">//   - les ACTIONS : des méthodes, seules à modifier l'état ;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="c1">//   - les valeurs calculées : des signaux computed.</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="c1">// Un composant l'obtient par inject(Panier) ; son gabarit, qui lit les</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="c1">// signaux, est mis à jour quand ILS changent, et seulement eux.</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="c1">// providedIn: 'root' : le service est créé à sa première demande et vit</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="c1">// tant que l'application vit : il survit au retrait d'un composant... mais</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="c1">// pas à l'arrêt de l'application.</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">computed</span><span class="p">,</span><span class="w"> </span><span class="nx">Injectable</span><span class="p">,</span><span class="w"> </span><span class="nx">signal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/core'</span><span class="p">;</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="k">export</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">Article</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">  </span><span class="nx">libelle</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">  </span><span class="nx">prix</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="p">}</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="kd">@Injectable</span><span class="p">({</span><span class="w"> </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">'root'</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Panier</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">_articles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="o">&lt;</span><span class="nx">Article</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">  </span><span class="c1">// une vue NON MODIFIABLE de l'état : seules les actions le changent</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">articles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">_articles</span><span class="p">.</span><span class="nx">asReadonly</span><span class="p">();</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">_articles</span><span class="p">().</span><span class="nx">length</span><span class="p">);</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">_articles</span><span class="p">().</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">s</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">prix</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">));</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="w">  </span><span class="nx">ajouter</span><span class="p">(</span><span class="nx">article</span><span class="o">:</span><span class="w"> </span><span class="kt">Article</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="w">    </span><span class="c1">// un NOUVEAU tableau : le signal voit que sa valeur a changé</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">_articles</span><span class="p">.</span><span class="nx">update</span><span class="p">((</span><span class="nx">articles</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">articles</span><span class="p">,</span><span class="w"> </span><span class="nx">article</span><span class="p">]);</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="w">  </span><span class="nx">vider</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">_articles</span><span class="p">.</span><span class="nx">set</span><span class="p">([]);</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Un magasin est un état qui vit HORS des pages et des composants, en UN seul exemplaire, partagé par tous ceux qui le lisent. Avec <em>[Angular]</em>, c&#x27;est simplement un <strong>service</strong> (cf. exemple 14) dont l&#x27;état est fait de <strong>signaux</strong> : il n&#x27;y a pas de bibliothèque à ajouter, là où <em>[Flutter]</em> utilisait le paquet <em>[provider]</em> autour d&#x27;un <em>[ChangeNotifier]</em>.</p>
+<ul>
+<li>ligne 26 : <strong><em>[providedIn: &#x27;root&#x27;]</em></strong> : le service est créé à sa première demande (<strong><em>[inject(Panier)]</em></strong>), en un seul exemplaire, et vit tant que l&#x27;application vit ;</li>
+<li>ligne 28 : l&#x27;état : un signal privé ;</li>
+<li>ligne 30 : une vue en lecture seule de l&#x27;état (<strong><em>[asReadonly()]</em></strong>) : seules les actions le changent ;</li>
+<li>lignes 31-32 : des valeurs calculées : des signaux <strong><em>[computed]</em></strong>, recalculés seulement quand la liste des articles change ;</li>
+<li>lignes 34-41 : les actions : des méthodes, seules à modifier l&#x27;état. Ligne 36 : un NOUVEAU tableau (<strong><em>[...articles]</em></strong> recopie les articles), et non <strong><em>[push]</em></strong> dans l&#x27;ancien : un signal compare l&#x27;ancienne et la nouvelle valeur (<strong><em>[===]</em></strong>), et ne prévient ses lecteurs que si elles diffèrent. Il n&#x27;y a pas de <strong><em>[notifyListeners()]</em></strong> à écrire : c&#x27;est le signal qui prévient.</li>
+</ul>
+<h3 id="622-les-preferences">6.2.2. <span style="color: #1f4d78">Les préférences</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span>
+<span class="normal"><a href="#__codelineno-3-42">42</a></span>
+<span class="normal"><a href="#__codelineno-3-43">43</a></span>
+<span class="normal"><a href="#__codelineno-3-44">44</a></span>
+<span class="normal"><a href="#__codelineno-3-45">45</a></span>
+<span class="normal"><a href="#__codelineno-3-46">46</a></span>
+<span class="normal"><a href="#__codelineno-3-47">47</a></span>
+<span class="normal"><a href="#__codelineno-3-48">48</a></span>
+<span class="normal"><a href="#__codelineno-3-49">49</a></span>
+<span class="normal"><a href="#__codelineno-3-50">50</a></span>
+<span class="normal"><a href="#__codelineno-3-51">51</a></span>
+<span class="normal"><a href="#__codelineno-3-52">52</a></span>
+<span class="normal"><a href="#__codelineno-3-53">53</a></span>
+<span class="normal"><a href="#__codelineno-3-54">54</a></span>
+<span class="normal"><a href="#__codelineno-3-55">55</a></span>
+<span class="normal"><a href="#__codelineno-3-56">56</a></span>
+<span class="normal"><a href="#__codelineno-3-57">57</a></span>
+<span class="normal"><a href="#__codelineno-3-58">58</a></span>
+<span class="normal"><a href="#__codelineno-3-59">59</a></span>
+<span class="normal"><a href="#__codelineno-3-60">60</a></span>
+<span class="normal"><a href="#__codelineno-3-61">61</a></span>
+<span class="normal"><a href="#__codelineno-3-62">62</a></span>
+<span class="normal"><a href="#__codelineno-3-63">63</a></span>
+<span class="normal"><a href="#__codelineno-3-64">64</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1">// src/app/ex20-etat-partage/magasins/preferences.ts - un état qui survit à l'arrêt</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1">// -------------------------------------------------------------------------</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1">// Pour qu'une donnée survive à l'arrêt de l'application, il faut la ranger</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="c1">// SUR L'APPAREIL. Le "plugin" @capacitor/preferences offre un petit</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="c1">// dictionnaire clé -&gt; valeur (des chaînes), propre à l'application et</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="c1">// conservé sur l'appareil (Android : les SharedPreferences ; dans un</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="c1">// navigateur : le localStorage). Toutes ses méthodes sont ASYNCHRONES</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="c1">// (elles rendent une Promise) :</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="c1">//   - au démarrage, on lit les valeurs mémorisées ;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="c1">//   - à chaque changement, on les réécrit.</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="c1">// On n'y range JAMAIS de donnée sensible (mot de passe, jeton) : elles y</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="c1">// sont écrites en clair.</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">effect</span><span class="p">,</span><span class="w"> </span><span class="nx">Injectable</span><span class="p">,</span><span class="w"> </span><span class="nx">signal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/core'</span><span class="p">;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="c1">// "as Stockage" : renommé, pour ne pas le confondre avec notre classe</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Preferences</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">Stockage</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@capacitor/preferences'</span><span class="p">;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="kd">const</span><span class="w"> </span><span class="nx">cleSombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'exemple20.sombre'</span><span class="p">;</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="kd">const</span><span class="w"> </span><span class="nx">cleTaille</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'exemple20.taille'</span><span class="p">;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="kd">@Injectable</span><span class="p">({</span><span class="w"> </span><span class="nx">providedIn</span><span class="o">:</span><span class="w"> </span><span class="s1">'root'</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Preferences</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">  </span><span class="c1">// l'état de départ : les valeurs par défaut, en attendant la lecture</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">_sombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">_taille</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="mf">16</span><span class="p">);</span><span class="w"> </span><span class="c1">// taille du texte</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">sombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">_sombre</span><span class="p">.</span><span class="nx">asReadonly</span><span class="p">();</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">taille</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">_taille</span><span class="p">.</span><span class="nx">asReadonly</span><span class="p">();</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">charger</span><span class="p">();</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a><span class="w">    </span><span class="c1">// un EFFET : une fonction rejouée chaque fois qu'un signal qu'elle lit</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="w">    </span><span class="c1">// change. Elle applique les préférences à TOUTE l'application :</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a><span class="w">    </span><span class="c1">//   - la classe ion-palette-dark sur &lt;html&gt; : le thème sombre d'Ionic</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a><span class="w">    </span><span class="c1">//     (cf. styles.scss) ;</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="w">    </span><span class="c1">//   - la taille de la police de &lt;html&gt; : les composants d'Ionic ont des</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a><span class="w">    </span><span class="c1">//     tailles en rem (multiples de cette taille), ils suivent</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a><span class="w">    </span><span class="nx">effect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a><span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">'ion-palette-dark'</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">_sombre</span><span class="p">());</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a><span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">_taille</span><span class="p">()</span><span class="si">}</span><span class="sb">px`</span><span class="p">;</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44"></a>
+<a id="__codelineno-3-45" name="__codelineno-3-45"></a><span class="w">  </span><span class="c1">// ce que l'appareil a mémorisé (value vaut null si la clé est absente)</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">charger</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Stockage</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">cleSombre</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">taille</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Stockage</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">cleTaille</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">sombre</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">_sombre</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">sombre</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">'true'</span><span class="p">);</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">taille</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">_taille</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">taille</span><span class="p">.</span><span class="nx">value</span><span class="p">));</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52"></a>
+<a id="__codelineno-3-53" name="__codelineno-3-53"></a><span class="w">  </span><span class="c1">// un paramètre facultatif par préférence : on ne change que ce qui est fourni</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54"></a><span class="w">  </span><span class="nx">modifier</span><span class="p">({</span><span class="w"> </span><span class="nx">sombre</span><span class="p">,</span><span class="w"> </span><span class="nx">taille</span><span class="w"> </span><span class="p">}</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">sombre?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w"> </span><span class="nx">taille?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">})</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">sombre</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56"></a><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">_sombre</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">sombre</span><span class="p">);</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57"></a><span class="w">      </span><span class="nx">Stockage</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">cleSombre</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">String</span><span class="p">(</span><span class="nx">sombre</span><span class="p">)</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// écriture sur l'appareil</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">taille</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-60" name="__codelineno-3-60"></a><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">_taille</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">taille</span><span class="p">);</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61"></a><span class="w">      </span><span class="nx">Stockage</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">cleTaille</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">String</span><span class="p">(</span><span class="nx">taille</span><span class="p">)</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-3-62" name="__codelineno-3-62"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-63" name="__codelineno-3-63"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-3-64" name="__codelineno-3-64"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Pour qu&#x27;une donnée survive à l&#x27;arrêt de l&#x27;application, il faut la ranger sur l&#x27;appareil. Le « plugin » <em>[@capacitor/preferences]</em> de <em>[Capacitor]</em> offre un petit dictionnaire clé -&gt; valeur (des chaînes), propre à l&#x27;application et conservé sur l&#x27;appareil : les <em>[SharedPreferences]</em> d&#x27;<em>[Android]</em> (celles qu&#x27;utilise le paquet <em>[shared_preferences]</em> de <em>[Flutter]</em>), et, dans un navigateur, le <em>[localStorage]</em>. Toutes ses méthodes sont <strong>asynchrones</strong> : elles rendent une <strong><em>[Promise]</em></strong>.</p>
+<ul>
+<li>ligne 18 : le plugin s&#x27;appelle lui aussi <strong><em>[Preferences]</em></strong> ; <strong><em>[as Stockage]</em></strong> le renomme dans ce fichier, pour ne pas le confondre avec notre classe ;</li>
+<li>lignes 26-29 : l&#x27;état de départ, des signaux aux valeurs par défaut, et leurs vues en lecture seule ;</li>
+<li>ligne 32 : la lecture de l&#x27;appareil est lancée à la création du service. Elle est asynchrone : pendant un court instant, les valeurs par défaut s&#x27;appliquent ;</li>
+<li>lignes 39-42 : un <strong>effet</strong> (<strong><em>[effect]</em></strong>) : une fonction rejouée chaque fois qu&#x27;un signal qu&#x27;elle lit change. Elle applique les préférences à TOUTE l&#x27;application : la classe CSS <strong><em>[ion-palette-dark]</em></strong> sur la balise <strong><em>[&lt;html&gt;]</em></strong> active le thème sombre d&#x27;<em>[Ionic]</em> (prévu dans <em>[styles.scss]</em>) ; la taille de la police de <strong><em>[&lt;html&gt;]</em></strong> agrandit les textes, car les composants d&#x27;<em>[Ionic]</em> expriment leurs tailles en <strong><em>[rem]</em></strong> (des multiples de cette taille). Un effet sert à cela : répercuter des signaux sur le monde extérieur (le DOM, le stockage...) ; il ne doit pas servir à calculer d&#x27;autres signaux (<strong><em>[computed]</em></strong> est fait pour cela) ;</li>
+<li>lignes 46-51 : la lecture de l&#x27;appareil : <strong><em>[Stockage.get]</em></strong> rend une <strong><em>[Promise]</em></strong> de <strong><em>[{ value }]</em></strong>, où <strong><em>[value]</em></strong> vaut <strong><em>[null]</em></strong> si la clé est absente. Les valeurs sont des chaînes : on les convertit ;</li>
+<li>lignes 54-63 : une seule action, à paramètres facultatifs (un objet déstructuré : <strong><em>[{ sombre, taille }]</em></strong>) : on ne change que ce qui est fourni, et on l&#x27;écrit aussitôt sur l&#x27;appareil (<strong><em>[Stockage.set]</em></strong>). On n&#x27;attend pas la fin de l&#x27;écriture : le signal, lui, a déjà changé.</li>
+</ul>
+<p>On n&#x27;y range JAMAIS de donnée sensible (mot de passe, jeton) : elles y sont écrites en clair. Pour cela, il existe des plugins qui utilisent le coffre-fort du système (<em>[Keystore]</em> d&#x27;<em>[Android]</em>, <em>[Keychain]</em> d&#x27;<em>[iOS]</em>).</p>
+<h3 id="623-les-composants">6.2.3. <span style="color: #1f4d78">Les composants</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="c1">// src/app/ex20-etat-partage/composants/boutique.ts - AJOUTE au panier partagé</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="c1">// -------------------------------------------------------------------------</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c1">// La boutique ne fait qu'APPELER une action du panier ; son gabarit ne lit</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c1">// aucun signal du panier : il n'est pas mis à jour quand le panier change.</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CurrencyPipe</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/common'</span><span class="p">;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">inject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/core'</span><span class="p">;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IonButton</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCard</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardContent</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardSubtitle</span><span class="p">,</span><span class="w"> </span><span class="nx">IonIcon</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@ionic/angular'</span><span class="p">;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">addIcons</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'ionicons'</span><span class="p">;</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'ionicons/icons'</span><span class="p">;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Article</span><span class="p">,</span><span class="w"> </span><span class="nx">Panier</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'../magasins/panier'</span><span class="p">;</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="kd">const</span><span class="w"> </span><span class="nx">produits</span><span class="o">:</span><span class="w"> </span><span class="kt">Article</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">libelle</span><span class="o">:</span><span class="w"> </span><span class="s1">'Consultation'</span><span class="p">,</span><span class="w"> </span><span class="nx">prix</span><span class="o">:</span><span class="w"> </span><span class="kt">30</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">libelle</span><span class="o">:</span><span class="w"> </span><span class="s1">'Vaccin'</span><span class="p">,</span><span class="w"> </span><span class="nx">prix</span><span class="o">:</span><span class="w"> </span><span class="kt">12.5</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="p">];</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="kd">@Component</span><span class="p">({</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">'app-ex20-boutique'</span><span class="p">,</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">CurrencyPipe</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCard</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardSubtitle</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCardContent</span><span class="p">,</span><span class="w"> </span><span class="nx">IonButton</span><span class="p">,</span><span class="w"> </span><span class="nx">IonIcon</span><span class="p">],</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">'./boutique.html'</span><span class="p">,</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="p">})</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Boutique</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">produits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">produits</span><span class="p">;</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">  </span><span class="c1">// le MÊME panier que celui des autres composants (un seul exemplaire)</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">panier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Panier</span><span class="p">);</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a>
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">    </span><span class="nx">addIcons</span><span class="p">({</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="cm">&lt;!-- ======================================================================</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="cm">     boutique.html - deux produits à ajouter au panier</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="cm">     ====================================================================== --&gt;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="p">&lt;</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>  <span class="p">&lt;</span><span class="nt">ion-card-header</span><span class="p">&gt;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>    <span class="p">&lt;</span><span class="nt">ion-card-subtitle</span><span class="p">&gt;</span>Boutique<span class="p">&lt;/</span><span class="nt">ion-card-subtitle</span><span class="p">&gt;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>  <span class="p">&lt;/</span><span class="nt">ion-card-header</span><span class="p">&gt;</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>  <span class="p">&lt;</span><span class="nt">ion-card-content</span><span class="p">&gt;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    @for (p of produits; track p.libelle) {
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>      <span class="p">&lt;</span><span class="nt">ion-button</span> <span class="na">fill</span><span class="o">=</span><span class="s">"clear"</span> <span class="err">(</span><span class="na">click</span><span class="err">)="</span><span class="na">panier</span><span class="err">.</span><span class="na">ajouter</span><span class="err">(</span><span class="na">p</span><span class="err">)"</span><span class="p">&gt;</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>        <span class="p">&lt;</span><span class="nt">ion-icon</span> <span class="na">slot</span><span class="o">=</span><span class="s">"start"</span> <span class="na">name</span><span class="o">=</span><span class="s">"add"</span> <span class="p">/&gt;</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>        {{ p.libelle }} ({{ p.prix | currency: 'EUR' }})
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>      <span class="p">&lt;/</span><span class="nt">ion-button</span><span class="p">&gt;</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>    }
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>  <span class="p">&lt;/</span><span class="nt">ion-card-content</span><span class="p">&gt;</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="p">&lt;/</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>ligne 28 (.ts) : <strong><em>[inject(Panier)]</em></strong> donne le MÊME panier que celui des autres composants ;</li>
+<li>ligne 11 (html) : la boutique ne fait qu&#x27;appeler une action. Son gabarit ne lit aucun signal du panier : il n&#x27;est pas mis à jour quand le panier change (c&#x27;était <strong><em>[context.read&lt;Panier&gt;()]</em></strong> avec <em>[provider]</em>) ;</li>
+<li>ligne 13 (html) : le pipe <strong><em>[currency]</em></strong> met le prix en forme, à la française (cf. exemple 09).</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span>
+<span class="normal"><a href="#__codelineno-6-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="c1">// src/app/ex20-etat-partage/composants/resume-panier.ts - LIT le même panier</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="c1">// -------------------------------------------------------------------------</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1">// Le gabarit lit deux signaux du panier, nombre() et total() : il est mis</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="c1">// à jour quand l'UN d'eux change, et seulement alors.</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CurrencyPipe</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/common'</span><span class="p">;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">inject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/core'</span><span class="p">;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IonButton</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCard</span><span class="p">,</span><span class="w"> </span><span class="nx">IonIcon</span><span class="p">,</span><span class="w"> </span><span class="nx">IonItem</span><span class="p">,</span><span class="w"> </span><span class="nx">IonLabel</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@ionic/angular'</span><span class="p">;</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">addIcons</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'ionicons'</span><span class="p">;</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">cart</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'ionicons/icons'</span><span class="p">;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Panier</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'../magasins/panier'</span><span class="p">;</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="kd">@Component</span><span class="p">({</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">'app-ex20-resume-panier'</span><span class="p">,</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">CurrencyPipe</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCard</span><span class="p">,</span><span class="w"> </span><span class="nx">IonItem</span><span class="p">,</span><span class="w"> </span><span class="nx">IonIcon</span><span class="p">,</span><span class="w"> </span><span class="nx">IonLabel</span><span class="p">,</span><span class="w"> </span><span class="nx">IonButton</span><span class="p">],</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">'./resume-panier.html'</span><span class="p">,</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="p">})</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ResumePanier</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">panier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Panier</span><span class="p">);</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a>
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a><span class="w">    </span><span class="nx">addIcons</span><span class="p">({</span><span class="w"> </span><span class="nx">cart</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="cm">&lt;!-- ======================================================================</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="cm">     resume-panier.html - le nombre d'articles et le total du panier</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="cm">     ====================================================================== --&gt;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="p">&lt;</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>  <span class="p">&lt;</span><span class="nt">ion-item</span> <span class="na">lines</span><span class="o">=</span><span class="s">"none"</span><span class="p">&gt;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="p">&lt;</span><span class="nt">ion-icon</span> <span class="na">slot</span><span class="o">=</span><span class="s">"start"</span> <span class="na">name</span><span class="o">=</span><span class="s">"cart"</span> <span class="p">/&gt;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="p">&lt;</span><span class="nt">ion-label</span><span class="p">&gt;</span>{{ panier.nombre() }} article(s), {{ panier.total() | currency: 'EUR' }}<span class="p">&lt;/</span><span class="nt">ion-label</span><span class="p">&gt;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="p">&lt;</span><span class="nt">ion-button</span> <span class="na">slot</span><span class="o">=</span><span class="s">"end"</span> <span class="na">fill</span><span class="o">=</span><span class="s">"clear"</span> <span class="err">[</span><span class="na">disabled</span><span class="err">]="</span><span class="na">panier</span><span class="err">.</span><span class="na">nombre</span><span class="err">()</span> <span class="err">===</span> <span class="na">0</span><span class="err">"</span> <span class="err">(</span><span class="na">click</span><span class="err">)="</span><span class="na">panier</span><span class="err">.</span><span class="na">vider</span><span class="err">()"</span><span class="p">&gt;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>      Vider
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>    <span class="p">&lt;/</span><span class="nt">ion-button</span><span class="p">&gt;</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>  <span class="p">&lt;/</span><span class="nt">ion-item</span><span class="p">&gt;</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="p">&lt;/</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>lignes 8-9 (html) : le gabarit lit deux signaux du panier, <strong><em>[nombre()]</em></strong> et <strong><em>[total()]</em></strong> : il est mis à jour quand l&#x27;UN d&#x27;eux change, et seulement alors. Avec <em>[provider]</em>, il fallait choisir entre <strong><em>[context.watch]</em></strong> (tout le panier) et <strong><em>[context.select]</em></strong> (une valeur) ; avec les signaux, la précision est automatique : on dépend de ce qu&#x27;on lit.</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="c1">// src/app/ex20-etat-partage/composants/compteur-local.ts - un état LOCAL</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1">// -------------------------------------------------------------------------</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1">// Le signal clics appartient au composant : il naît avec lui et disparaît</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1">// avec lui.</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">input</span><span class="p">,</span><span class="w"> </span><span class="nx">signal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/core'</span><span class="p">;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IonButton</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCard</span><span class="p">,</span><span class="w"> </span><span class="nx">IonItem</span><span class="p">,</span><span class="w"> </span><span class="nx">IonLabel</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@ionic/angular'</span><span class="p">;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="kd">@Component</span><span class="p">({</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">'app-ex20-compteur-local'</span><span class="p">,</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">IonCard</span><span class="p">,</span><span class="w"> </span><span class="nx">IonItem</span><span class="p">,</span><span class="w"> </span><span class="nx">IonLabel</span><span class="p">,</span><span class="w"> </span><span class="nx">IonButton</span><span class="p">],</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">'./compteur-local.html'</span><span class="p">,</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="p">})</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CompteurLocal</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">titre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">required</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">clics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="cm">&lt;!-- ======================================================================</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="cm">     compteur-local.html - un compteur de clics</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="cm">     ====================================================================== --&gt;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="p">&lt;</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>  <span class="p">&lt;</span><span class="nt">ion-item</span> <span class="na">lines</span><span class="o">=</span><span class="s">"none"</span><span class="p">&gt;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>    <span class="p">&lt;</span><span class="nt">ion-label</span><span class="p">&gt;</span>{{ titre() }}<span class="p">&lt;/</span><span class="nt">ion-label</span><span class="p">&gt;</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="p">&lt;</span><span class="nt">ion-button</span> <span class="na">slot</span><span class="o">=</span><span class="s">"end"</span> <span class="na">fill</span><span class="o">=</span><span class="s">"outline"</span> <span class="err">(</span><span class="na">click</span><span class="err">)="</span><span class="na">clics</span><span class="err">.</span><span class="na">set</span><span class="err">(</span><span class="na">clics</span><span class="err">()</span> <span class="err">+</span> <span class="na">1</span><span class="err">)"</span><span class="p">&gt;</span>{{ clics() }} clic(s)<span class="p">&lt;/</span><span class="nt">ion-button</span><span class="p">&gt;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>  <span class="p">&lt;/</span><span class="nt">ion-item</span><span class="p">&gt;</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="p">&lt;/</span><span class="nt">ion-card</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>Un état <strong>local</strong> (ligne 18 du .ts), qui naît et disparaît avec le composant.</p>
+<h3 id="624-la-page">6.2.4. <span style="color: #1f4d78">La page</span></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span>
+<span class="normal"><a href="#__codelineno-10-19">19</a></span>
+<span class="normal"><a href="#__codelineno-10-20">20</a></span>
+<span class="normal"><a href="#__codelineno-10-21">21</a></span>
+<span class="normal"><a href="#__codelineno-10-22">22</a></span>
+<span class="normal"><a href="#__codelineno-10-23">23</a></span>
+<span class="normal"><a href="#__codelineno-10-24">24</a></span>
+<span class="normal"><a href="#__codelineno-10-25">25</a></span>
+<span class="normal"><a href="#__codelineno-10-26">26</a></span>
+<span class="normal"><a href="#__codelineno-10-27">27</a></span>
+<span class="normal"><a href="#__codelineno-10-28">28</a></span>
+<span class="normal"><a href="#__codelineno-10-29">29</a></span>
+<span class="normal"><a href="#__codelineno-10-30">30</a></span>
+<span class="normal"><a href="#__codelineno-10-31">31</a></span>
+<span class="normal"><a href="#__codelineno-10-32">32</a></span>
+<span class="normal"><a href="#__codelineno-10-33">33</a></span>
+<span class="normal"><a href="#__codelineno-10-34">34</a></span>
+<span class="normal"><a href="#__codelineno-10-35">35</a></span>
+<span class="normal"><a href="#__codelineno-10-36">36</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="c1">// src/app/ex20-etat-partage/ex20.page.ts - trois "portées" de données</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="c1">// -------------------------------------------------------------------------</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1">//   - l'état LOCAL d'un composant (CompteurLocal) disparaît avec lui ;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="c1">//   - l'état d'un SERVICE (le panier) est partagé par tous les composants</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="c1">//     et survit à leur retrait - mais pas à l'arrêt de l'application ;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="c1">//   - l'état rangé sur l'appareil (les préférences) survit à l'arrêt.</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="c1">// Et la classe CSS ion-hide : le contenu est CACHÉ, mais pas retiré ; son</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="c1">// état local est conservé.</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="c1">// Décochez puis recochez "afficher la zone", puis arrêtez et relancez</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="c1">// l'application : comparez.</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="c1">// =========================================================================</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">inject</span><span class="p">,</span><span class="w"> </span><span class="nx">signal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@angular/core'</span><span class="p">;</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">  </span><span class="nx">IonBackButton</span><span class="p">,</span><span class="w"> </span><span class="nx">IonButtons</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCheckbox</span><span class="p">,</span><span class="w"> </span><span class="nx">IonContent</span><span class="p">,</span><span class="w"> </span><span class="nx">IonHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">IonItem</span><span class="p">,</span><span class="w"> </span><span class="nx">IonLabel</span><span class="p">,</span><span class="w"> </span><span class="nx">IonList</span><span class="p">,</span><span class="w"> </span><span class="nx">IonRange</span><span class="p">,</span><span class="w"> </span><span class="nx">IonTitle</span><span class="p">,</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="w">  </span><span class="nx">IonToggle</span><span class="p">,</span><span class="w"> </span><span class="nx">IonToolbar</span><span class="p">,</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'@ionic/angular'</span><span class="p">;</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Boutique</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./composants/boutique'</span><span class="p">;</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CompteurLocal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./composants/compteur-local'</span><span class="p">;</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ResumePanier</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./composants/resume-panier'</span><span class="p">;</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Preferences</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./magasins/preferences'</span><span class="p">;</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23"></a>
+<a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="kd">@Component</span><span class="p">({</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">'app-ex20'</span><span class="p">,</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="w">  </span><span class="nx">imports</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="w">    </span><span class="nx">IonHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">IonToolbar</span><span class="p">,</span><span class="w"> </span><span class="nx">IonButtons</span><span class="p">,</span><span class="w"> </span><span class="nx">IonBackButton</span><span class="p">,</span><span class="w"> </span><span class="nx">IonTitle</span><span class="p">,</span><span class="w"> </span><span class="nx">IonContent</span><span class="p">,</span><span class="w"> </span><span class="nx">IonList</span><span class="p">,</span><span class="w"> </span><span class="nx">IonItem</span><span class="p">,</span><span class="w"> </span><span class="nx">IonLabel</span><span class="p">,</span><span class="w"> </span><span class="nx">IonToggle</span><span class="p">,</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="w">    </span><span class="nx">IonRange</span><span class="p">,</span><span class="w"> </span><span class="nx">IonCheckbox</span><span class="p">,</span><span class="w"> </span><span class="nx">Boutique</span><span class="p">,</span><span class="w"> </span><span class="nx">ResumePanier</span><span class="p">,</span><span class="w"> </span><span class="nx">CompteurLocal</span><span class="p">,</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s1">'./ex20.page.html'</span><span class="p">,</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="p">})</span>
+<a id="__codelineno-10-32" name="__codelineno-10-32"></a><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Ex20Page</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-33" name="__codelineno-10-33"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">preferences</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">inject</span><span class="p">(</span><span class="nx">Preferences</span><span class="p">);</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34"></a><span class="w">  </span><span class="c1">// un état local de la page</span>
+<a id="__codelineno-10-35" name="__codelineno-10-35"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">zoneVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">signal</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-10-36" name="__codelineno-10-36"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span>
+<span class="normal"><a href="#__codelineno-11-21">21</a></span>
+<span class="normal"><a href="#__codelineno-11-22">22</a></span>
+<span class="normal"><a href="#__codelineno-11-23">23</a></span>
+<span class="normal"><a href="#__codelineno-11-24">24</a></span>
+<span class="normal"><a href="#__codelineno-11-25">25</a></span>
+<span class="normal"><a href="#__codelineno-11-26">26</a></span>
+<span class="normal"><a href="#__codelineno-11-27">27</a></span>
+<span class="normal"><a href="#__codelineno-11-28">28</a></span>
+<span class="normal"><a href="#__codelineno-11-29">29</a></span>
+<span class="normal"><a href="#__codelineno-11-30">30</a></span>
+<span class="normal"><a href="#__codelineno-11-31">31</a></span>
+<span class="normal"><a href="#__codelineno-11-32">32</a></span>
+<span class="normal"><a href="#__codelineno-11-33">33</a></span>
+<span class="normal"><a href="#__codelineno-11-34">34</a></span>
+<span class="normal"><a href="#__codelineno-11-35">35</a></span>
+<span class="normal"><a href="#__codelineno-11-36">36</a></span>
+<span class="normal"><a href="#__codelineno-11-37">37</a></span>
+<span class="normal"><a href="#__codelineno-11-38">38</a></span>
+<span class="normal"><a href="#__codelineno-11-39">39</a></span>
+<span class="normal"><a href="#__codelineno-11-40">40</a></span>
+<span class="normal"><a href="#__codelineno-11-41">41</a></span>
+<span class="normal"><a href="#__codelineno-11-42">42</a></span>
+<span class="normal"><a href="#__codelineno-11-43">43</a></span>
+<span class="normal"><a href="#__codelineno-11-44">44</a></span>
+<span class="normal"><a href="#__codelineno-11-45">45</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="cm">&lt;!-- ======================================================================</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="cm">     ex20.page.html - un état partagé</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="cm">     ====================================================================== --&gt;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="p">&lt;</span><span class="nt">ion-header</span><span class="p">&gt;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a>  <span class="p">&lt;</span><span class="nt">ion-toolbar</span> <span class="na">color</span><span class="o">=</span><span class="s">"primary"</span><span class="p">&gt;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>    <span class="p">&lt;</span><span class="nt">ion-buttons</span> <span class="na">slot</span><span class="o">=</span><span class="s">"start"</span><span class="p">&gt;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a>      <span class="p">&lt;</span><span class="nt">ion-back-button</span> <span class="na">defaultHref</span><span class="o">=</span><span class="s">"/"</span> <span class="p">/&gt;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>    <span class="p">&lt;/</span><span class="nt">ion-buttons</span><span class="p">&gt;</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a>    <span class="p">&lt;</span><span class="nt">ion-title</span><span class="p">&gt;</span>Exemple 20 - un état partagé<span class="p">&lt;/</span><span class="nt">ion-title</span><span class="p">&gt;</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a>  <span class="p">&lt;/</span><span class="nt">ion-toolbar</span><span class="p">&gt;</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="p">&lt;/</span><span class="nt">ion-header</span><span class="p">&gt;</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="p">&lt;</span><span class="nt">ion-content</span> <span class="na">class</span><span class="o">=</span><span class="s">"ion-padding"</span><span class="p">&gt;</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15"></a>  <span class="p">&lt;</span><span class="nt">ion-list</span><span class="p">&gt;</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16"></a>    <span class="p">&lt;</span><span class="nt">ion-item</span><span class="p">&gt;</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17"></a>      <span class="cm">&lt;!-- [checked] : la valeur du service ; (ionChange) : l'action qui la modifie --&gt;</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18"></a>      <span class="p">&lt;</span><span class="nt">ion-toggle</span> <span class="err">[</span><span class="na">checked</span><span class="err">]="</span><span class="na">preferences</span><span class="err">.</span><span class="na">sombre</span><span class="err">()"</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19"></a>        <span class="err">(</span><span class="na">ionChange</span><span class="err">)="</span><span class="na">preferences</span><span class="err">.</span><span class="na">modifier</span><span class="err">({</span> <span class="na">sombre:</span> <span class="err">$</span><span class="na">event</span><span class="err">.</span><span class="na">detail</span><span class="err">.</span><span class="na">checked</span> <span class="err">})"</span><span class="p">&gt;</span>thème sombre<span class="p">&lt;/</span><span class="nt">ion-toggle</span><span class="p">&gt;</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20"></a>    <span class="p">&lt;/</span><span class="nt">ion-item</span><span class="p">&gt;</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21"></a>    <span class="p">&lt;</span><span class="nt">ion-item</span><span class="p">&gt;</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22"></a>      <span class="cm">&lt;!-- snaps / ticks : des crans, tous les step --&gt;</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23"></a>      <span class="p">&lt;</span><span class="nt">ion-range</span> <span class="err">[</span><span class="na">min</span><span class="err">]="</span><span class="na">12</span><span class="err">"</span> <span class="err">[</span><span class="na">max</span><span class="err">]="</span><span class="na">22</span><span class="err">"</span> <span class="err">[</span><span class="na">step</span><span class="err">]="</span><span class="na">1</span><span class="err">"</span> <span class="err">[</span><span class="na">snaps</span><span class="err">]="</span><span class="na">true</span><span class="err">"</span> <span class="err">[</span><span class="na">ticks</span><span class="err">]="</span><span class="na">true</span><span class="err">"</span> <span class="err">[</span><span class="na">value</span><span class="err">]="</span><span class="na">preferences</span><span class="err">.</span><span class="na">taille</span><span class="err">()"</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24"></a>        <span class="err">(</span><span class="na">ionChange</span><span class="err">)="</span><span class="na">preferences</span><span class="err">.</span><span class="na">modifier</span><span class="err">({</span> <span class="na">taille:</span> <span class="err">+$</span><span class="na">event</span><span class="err">.</span><span class="na">detail</span><span class="err">.</span><span class="na">value</span> <span class="err">})"</span><span class="p">&gt;</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25"></a>        <span class="p">&lt;</span><span class="nt">ion-label</span> <span class="na">slot</span><span class="o">=</span><span class="s">"label"</span><span class="p">&gt;</span>taille du texte : {{ preferences.taille() }}<span class="p">&lt;/</span><span class="nt">ion-label</span><span class="p">&gt;</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26"></a>      <span class="p">&lt;/</span><span class="nt">ion-range</span><span class="p">&gt;</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27"></a>    <span class="p">&lt;/</span><span class="nt">ion-item</span><span class="p">&gt;</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28"></a>    <span class="p">&lt;</span><span class="nt">ion-item</span><span class="p">&gt;</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29"></a>      <span class="p">&lt;</span><span class="nt">ion-checkbox</span> <span class="err">[</span><span class="na">checked</span><span class="err">]="</span><span class="na">zoneVisible</span><span class="err">()"</span> <span class="err">(</span><span class="na">ionChange</span><span class="err">)="</span><span class="na">zoneVisible</span><span class="err">.</span><span class="na">set</span><span class="err">($</span><span class="na">event</span><span class="err">.</span><span class="na">detail</span><span class="err">.</span><span class="na">checked</span><span class="err">)"</span><span class="p">&gt;</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30"></a>        afficher la zone<span class="p">&lt;/</span><span class="nt">ion-checkbox</span><span class="p">&gt;</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31"></a>    <span class="p">&lt;/</span><span class="nt">ion-item</span><span class="p">&gt;</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32"></a>  <span class="p">&lt;/</span><span class="nt">ion-list</span><span class="p">&gt;</span>
+<a id="__codelineno-11-33" name="__codelineno-11-33"></a>
+<a id="__codelineno-11-34" name="__codelineno-11-34"></a>  <span class="cm">&lt;!-- retirée : ces composants disparaissent, avec leur état local --&gt;</span>
+<a id="__codelineno-11-35" name="__codelineno-11-35"></a>  @if (zoneVisible()) {
+<a id="__codelineno-11-36" name="__codelineno-11-36"></a>    <span class="p">&lt;</span><span class="nt">app-ex20-boutique</span> <span class="p">/&gt;</span>
+<a id="__codelineno-11-37" name="__codelineno-11-37"></a>    <span class="p">&lt;</span><span class="nt">app-ex20-resume-panier</span> <span class="p">/&gt;</span>
+<a id="__codelineno-11-38" name="__codelineno-11-38"></a>    <span class="p">&lt;</span><span class="nt">app-ex20-compteur-local</span> <span class="na">titre</span><span class="o">=</span><span class="s">"État local"</span> <span class="p">/&gt;</span>
+<a id="__codelineno-11-39" name="__codelineno-11-39"></a>  }
+<a id="__codelineno-11-40" name="__codelineno-11-40"></a>  <span class="cm">&lt;!-- cachée (ion-hide : display none) : le composant reste en mémoire, son état est conservé --&gt;</span>
+<a id="__codelineno-11-41" name="__codelineno-11-41"></a>  <span class="p">&lt;</span><span class="nt">app-ex20-compteur-local</span> <span class="na">titre</span><span class="o">=</span><span class="s">"État local, caché par une classe CSS"</span> <span class="err">[</span><span class="na">class</span><span class="err">.</span><span class="na">ion-hide</span><span class="err">]="!</span><span class="na">zoneVisible</span><span class="err">()"</span> <span class="p">/&gt;</span>
+<a id="__codelineno-11-42" name="__codelineno-11-42"></a>
+<a id="__codelineno-11-43" name="__codelineno-11-43"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hors de la zone, un second résumé du MÊME panier (il reste là quand la zone disparaît) :<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-11-44" name="__codelineno-11-44"></a>  <span class="p">&lt;</span><span class="nt">app-ex20-resume-panier</span> <span class="p">/&gt;</span>
+<a id="__codelineno-11-45" name="__codelineno-11-45"></a><span class="p">&lt;/</span><span class="nt">ion-content</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>ligne 33 (.ts) : les préférences, un service ; il est créé (et lit l&#x27;appareil) à sa première demande ;</li>
+<li>ligne 35 (.ts) : un état local de la page : la zone est-elle affichée ?</li>
+<li>lignes 18-19 (html) : un interrupteur (<strong><em>[&lt;ion-toggle&gt;]</em></strong>) : <strong><em>[[checked]]</em></strong> reçoit la valeur du service, et <strong><em>[(ionChange)]</em></strong> appelle son action ;</li>
+<li>lignes 23-26 (html) : un curseur (<strong><em>[&lt;ion-range&gt;]</em></strong>) de 12 à 22, à crans (<strong><em>[snaps]</em></strong>, <strong><em>[ticks]</em></strong>) ; <strong><em>[+$event.detail.value]</em></strong> convertit la valeur en nombre ;</li>
+<li>lignes 29-30 (html) : une case à cocher, liée à l&#x27;état local ;</li>
+<li>lignes 35-39 (html) : retirée (<strong><em>[@if]</em></strong>), la zone disparaît : ses composants sont DÉTRUITS, avec leur état local ;</li>
+<li>ligne 41 (html) : cachée, par la classe CSS <strong><em>[ion-hide]</em></strong> d&#x27;<em>[Ionic]</em> (<strong><em>[display: none]</em></strong>), le composant reste en mémoire : son état est conservé. <strong><em>[[class.ion-hide]=&quot;...&quot;]</em></strong> pose la classe quand l&#x27;expression est vraie. (C&#x27;était le <strong><em>[Visibility(maintainState: true)]</em></strong> de <em>[Flutter]</em>.)</li>
+<li>ligne 44 (html) : un second résumé du même panier, hors de la zone.</li>
+</ul>
+<p>Le panier et les préférences sont fournis à toute l&#x27;application (<strong><em>[providedIn: &#x27;root&#x27;]</em></strong>). Pour qu&#x27;un service soit propre à une page (un exemplaire par page, détruit avec elle), on le déclare dans les <strong><em>[providers]</em></strong> de son composant, comme le fera l&#x27;exemple 21.</p>
+<h3 id="625-lexecution">6.2.5. <span style="color: #1f4d78">L&#x27;exécution</span></h3>
+<p>On ajoute deux articles, on appuie deux fois sur le premier compteur local et une fois sur le second (à gauche) ; on retire la zone et on passe au thème sombre (au milieu) ; on remet la zone (à droite) :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000043A00000926F0BF928F.png" width="179" height="387" style="display:inline-block; margin:4px;width:4.733cm;height:10.245cm;" class="odt-zoomable" data-zoom-src="images/100000000000043A00000926F0BF928F.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000043A000009269719B75E.png" width="179" height="387" style="display:inline-block; margin:4px;width:4.733cm;height:10.245cm;" class="odt-zoomable" data-zoom-src="images/100000000000043A000009269719B75E.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000043A00000926EE1E5ED7.png" width="179" height="387" style="display:inline-block; margin:4px;width:4.733cm;height:10.245cm;" class="odt-zoomable" data-zoom-src="images/100000000000043A00000926EE1E5ED7.png" /></td></tr></table>
+
+<p>Le panier a survécu au retrait de la zone (le second résumé le montre) ; le compteur retiré est reparti de zéro ; le compteur caché a gardé sa valeur. Arrêtez l&#x27;application et relancez-la (dans le navigateur : rechargez la page) : le thème sombre et la taille du texte sont conservés, le panier est vide. Les préférences s&#x27;appliquent à toute l&#x27;application : en revenant au menu, il est lui aussi en thème sombre.</p>
+<p>Pourquoi pas une bibliothèque de gestion d&#x27;état ? Il en existe pour <em>[Angular]</em> (<em>[NgRx]</em>, sa variante <em>[SignalStore]</em>, <em>[NGXS]</em>...), comme il en existe pour <em>[Flutter]</em> (<em>[provider]</em>, <em>[Riverpod]</em>, <em>[Bloc]</em>...). Mais l&#x27;injection de dépendances et les signaux font déjà l&#x27;essentiel : un service à signaux est un magasin, et c&#x27;est ce qu&#x27;utilisera l&#x27;étude de cas.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Ce tutoriel, rédigé par l’IA d’Anthropic <strong>Claude</strong> à la demande de <strong>Serge Tahé</strong>, est mis à la disposition du public selon les termes de la
+        <em>licence Creative Commons Attribution – Pas d’utilisation commerciale –
+        ShareAlike 3.0 Unported</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

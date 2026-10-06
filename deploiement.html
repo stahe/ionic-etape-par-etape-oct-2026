@@ -1,0 +1,1015 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Introduction étape par étape au framework mobile [Ionic]">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/ionic-etape-par-etape-oct-2026/deploiement.html">
+      
+      
+        <link rel="prev" href="etude-de-cas--le-client-ionic-de-lapplication-rdvmedecins.html">
+      
+      
+        <link rel="next" href="conclusion.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>12. Déploiement - Introduction étape par étape au framework mobile [Ionic]</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Introduction étape par étape au framework mobile [Ionic]";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#12-deploiement" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Introduction étape par étape au framework mobile [Ionic]" class="md-header__button md-logo" aria-label="Introduction étape par étape au framework mobile [Ionic]" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction étape par étape au framework mobile [Ionic]
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              12. Déploiement
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/ionic-etape-par-etape-oct-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Introduction étape par étape au framework mobile [Ionic]" class="md-nav__button md-logo" aria-label="Introduction étape par étape au framework mobile [Ionic]" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Introduction étape par étape au framework mobile [Ionic]
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/ionic-etape-par-etape-oct-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mise-en-place-de-lenvironnement-de-travail.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Mise en place de l'environnement de travail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="premiers-pas-avec-ionic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Premiers pas avec Ionic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="les-composants.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Les composants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="le-routage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Le routage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lasynchrone-et-letat-partage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. L'asynchrone et l'état partagé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="internationalisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Internationalisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="le-serveur-rdvmedecins-une-boite-noire.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Le serveur RdvMedecins, une boîte noire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dialoguer-avec-le-serveur.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Dialoguer avec le serveur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion-intermediaire.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Conclusion intermédiaire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="etude-de-cas--le-client-ionic-de-lapplication-rdvmedecins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Étude de cas : le client Ionic de l'application RdvMedecins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Déploiement
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="deploiement.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Déploiement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#121-la-version-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1. La version web
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-la-version-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2. La version Android
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123-le-serveur-en-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3. Le serveur en production
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Conclusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="annexes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Annexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="12-deploiement">12. <span style="color: #2e74b5">Déploiement</span></h1>
+<p>En développement, l&#x27;application tourne sous le contrôle de <em>[ng serve]</em> : compilée à la volée, avec les vérifications et les messages d&#x27;<em>[Angular]</em> pour le développeur, et rechargée à chaque modification. Pour la livrer, on la <strong>construit</strong> : <em>[ng build]</em> produit une application web optimisée, sans outils de développement. C&#x27;est elle qu&#x27;on dépose sur un serveur web, et c&#x27;est ELLE AUSSI que <em>[Capacitor]</em> emballe dans l&#x27;application <em>[Android]</em> : il n&#x27;y a qu&#x27;une construction, pour les deux plates-formes.</p>
+<h2 id="121-la-version-web">12.1. <span style="color: #2e74b5">La version web</span></h2>
+<ol>
+<li>Construire le client. Dans le dossier <em>[rdvmedecins_ionic]</em> :</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>npx ng build
+</code></pre></div></td></tr></table></div>
+<p>La console affiche (la liste des fichiers a été raccourcie) :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>Initial chunk files | Names               |  Raw size | Estimated transfer size
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>chunk-B78SF6dw.js   | -                   | 949.39 kB |               177.46 kB
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>styles-QIGAQL23.css | styles              |  47.48 kB |                 5.72 kB
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>chunk-Dy0_VL94.js   | -                   |  37.92 kB |                13.16 kB
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>main-LY7QVQC3.js    | main                |  35.99 kB |                11.14 kB
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>...
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>                    | Initial total       |   1.11 MB |               222.78 kB
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>Lazy chunk files    | Names               |  Raw size | Estimated transfer size
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>chunk-vrqF1nCC.js   | mon-compte          |   6.06 kB |                 1.93 kB
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>chunk-CaZDrNJV.js   | connexion           |   5.52 kB |                 2.08 kB
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>chunk-DSAQiRJ0.js   | espace-patient      |   4.37 kB |                 1.73 kB
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>chunk-CcFDVlpI.js   | personne-formulaire |   4.36 kB |                 1.70 kB
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a>chunk-BwT4ElDr.js   | personnes           |   3.99 kB |                 1.68 kB
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>chunk-JCd4gJwq.js   | inscription         |   3.54 kB |                 1.32 kB
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>chunk-DgEvk3rN.js   | page-erreur         |   1.16 kB |               620 bytes
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>...and 10 more lazy chunks files. Use "--verbose" to show all the files.
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>Application bundle generation complete. [7.243 seconds]
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a>Output location: .../rdvmedecins_ionic/dist/rdvmedecins_ionic
+</code></pre></div></td></tr></table></div>
+<p>Sans option, <em>[ng build]</em> utilise la configuration <em>[production]</em> d&#x27;<em>[angular.json]</em> : le code est optimisé (les noms raccourcis, les espaces et les commentaires retirés, le code inutilisé éliminé), et les vérifications réservées au développement disparaissent. Le compilateur a traduit l&#x27;application (<em>[TypeScript]</em>, gabarits, <em>[Angular]</em>, <em>[Ionic]</em>) en <em>[JavaScript]</em>, dans le dossier <em>[dist/rdvmedecins_ionic/browser/]</em> :</p>
+<ul>
+<li><em>[index.html]</em> : LA page de l&#x27;application, qui charge les fichiers <em>[JavaScript]</em> et la feuille de style. Contrairement au client <em>[Flutter]</em>, l&#x27;application produit du HTML ordinaire, que le navigateur affiche lui-même ;</li>
+<li>les « morceaux » (chunks) initiaux, chargés au démarrage : <em>[Angular]</em>, <em>[Ionic]</em>, le routeur, les services, le gabarit. 1,1 Mo, soit environ 220 ko une fois compressés par le serveur : c&#x27;est l&#x27;estimation de la dernière colonne ;</li>
+<li>les morceaux « paresseux » (lazy) : un par écran (<em>[connexion]</em>, <em>[mon-compte]</em>...), grâce au <strong><em>[loadComponent]</em></strong> des routes (cf. <em>[app.routes.ts]</em>), et quelques autres pour les composants d&#x27;<em>[Ionic]</em> chargés à la demande. Chacun n&#x27;est téléchargé qu&#x27;à la première visite de l&#x27;écran ;</li>
+<li>le nom de chaque fichier contient une empreinte de son contenu (<em>[main-LY7QVQC3.js]</em>) : le serveur peut demander au navigateur de les garder en cache indéfiniment, puisqu&#x27;une nouvelle version aura de nouveaux noms ;</li>
+<li><em>[i18n/]</em> et <em>[favicon.ico]</em> : le contenu du dossier <em>[public/]</em>, copié tel quel ;</li>
+<li><em>[angular.json]</em> fixe des « budgets » à la configuration <em>[production]</em> : un avertissement au-delà de 2 Mo pour les morceaux initiaux, une erreur au-delà de 5 Mo. L&#x27;application en est loin.</li>
+</ul>
+<p>L&#x27;option <strong><em>[--define &quot;SERVEUR=&#x27;...&#x27;&quot;]</em></strong> n&#x27;est pas nécessaire ici : servie par le serveur JSON, l&#x27;application utilise l&#x27;adresse relative de <em>[config.ts]</em> (<em>[/api/...]</em>).</p>
+<ol>
+<li>
+<p>La déposer dans le serveur. Le serveur JSON sait servir un client web compilé (fichier <em>[src/web/client-spa.ts]</em> du serveur) : ses fichiers sont cherchés dans le dossier <em>[client/]</em>, à la racine du serveur, ou dans le dossier désigné par la variable d&#x27;environnement <em>[DOSSIER_CLIENT]</em> (fichier <em>[src/config/chemins.ts]</em> du serveur ; elle peut être écrite dans le fichier <em>[.env]</em>). Deux possibilités :</p>
+</li>
+<li>
+<p>copier le CONTENU du dossier <em>[dist/rdvmedecins_ionic/browser/]</em> dans un dossier <em>[client/]</em> à la racine du serveur JSON (<em>[rdvmedecins-nestjs-json/client/index.html]</em>, <em>[rdvmedecins-nestjs-json/client/main-LY7QVQC3.js]</em>...) ;</p>
+</li>
+<li>ou désigner directement le dossier produit par <em>[ng build]</em> :</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="na">DOSSIER_CLIENT</span><span class="o">=</span><span class="s">../rdvmedecins_ionic/dist/rdvmedecins_ionic/browser</span>
+</code></pre></div></td></tr></table></div>
+<p>(un chemin relatif à la racine du serveur, ou un chemin absolu). Puis on relance le serveur. Il affiche :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>[Nest] LOG [RdvMedecins] client web servi depuis .../rdvmedecins_ionic/dist/rdvmedecins_ionic/browser
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>[Nest] LOG [RdvMedecins] serveur JSON démarré : http://localhost:8080/api
+</code></pre></div></td></tr></table></div>
+<p>L&#x27;application complète est alors à l&#x27;adresse http://localhost:8080. Le serveur sert les fichiers du client, et renvoie <em>[index.html]</em> pour toute autre adresse hors de /api : recharger la page /agenda?idMedecin=1&amp;jour=2026-10-13 fonctionne (c&#x27;est le routeur du client qui affiche l&#x27;écran de cette adresse). La page et l&#x27;API viennent de la même origine : pas de CORS, et le cookie du jeton circule.</p>
+<p>Pour l&#x27;essayer sans arrêter le serveur de développement, on peut lancer une SECONDE instance du serveur JSON sur un autre port, en donnant les deux variables dans la ligne de commande (ici sous <em>[Linux]</em> ou <em>[macOS]</em> ; sous <em>[Windows]</em>, avec <em>[PowerShell]</em>, on les définit d&#x27;abord par <strong><em>[$env:PORT=8090]</em></strong> et <strong><em>[$env:DOSSIER_CLIENT=&#x27;...&#x27;]</em></strong>) :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>cd rdvmedecins-nestjs-json
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>PORT=8090 DOSSIER_CLIENT=../rdvmedecins_ionic/dist/rdvmedecins_ionic/browser npm run start:prod
+</code></pre></div></td></tr></table></div>
+<p>L&#x27;application est alors à l&#x27;adresse http://localhost:8090 ; les deux instances partagent la même base de données. C&#x27;est ainsi que la version web de ce client a été vérifiée : connexion, agenda, rechargement de la page sur une adresse /agenda?..., titre de l&#x27;onglet traduit.</p>
+<p>On peut aussi déposer le client sur n&#x27;importe quel serveur web (<em>[nginx]</em>, <em>[Apache]</em>...), à condition de lui faire transmettre les requêtes /api au serveur JSON (un « reverse proxy »), et de lui faire renvoyer <em>[index.html]</em> pour les adresses inconnues : c&#x27;est ce que fait, en développement, <em>[ng serve]</em>.</p>
+<h2 id="122-la-version-android">12.2. <span style="color: #2e74b5">La version Android</span></h2>
+<p>La construction de l&#x27;application <em>[Android]</em> demande <em>[Android Studio]</em> et le SDK d&#x27;<em>[Android]</em> (cf. chapitre « Mise en place de l&#x27;environnement de travail »). <em>[Capacitor]</em> 8 exige un JDK 21 ou plus récent : celui qui est livré avec <em>[Android Studio]</em> convient.</p>
+<ol>
+<li>Créer le projet <em>[Android]</em>, une seule fois :</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>npx cap add android
+</code></pre></div></td></tr></table></div>
+<p>La commande fabrique le dossier <em>[android/]</em> : un projet <em>[Android Studio]</em> complet (un projet <em>[Gradle]</em>), qui contient une activité <em>[Android]</em> affichant une <em>[WebView]</em>, et les greffons de <em>[Capacitor]</em> utilisés par l&#x27;application (<em>[@capacitor/app]</em>, <em>[@capacitor/preferences]</em>). Ce dossier fait partie du projet : on le garde (et on l&#x27;enregistre avec les sources, dans <em>[git]</em>), car c&#x27;est là qu&#x27;on règle le nom, l&#x27;icône, la signature de l&#x27;application.</p>
+<p>Si le JDK est un <em>[Java]</em> 25 (celui des versions récentes d&#x27;<em>[Android Studio]</em>), la version de <em>[Gradle]</em> choisie par <em>[Capacitor]</em> (8.14) ne sait pas le faire fonctionner (<em>[Unsupported class file major version 69]</em>) : on passe à <em>[Gradle]</em> 9.1 dans le fichier <em>[android/gradle/wrapper/gradle-wrapper.properties]</em> (cf. exemple 01) :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="na">distributionUrl</span><span class="o">=</span><span class="s">https</span><span class="se">\:</span><span class="s">//services.gradle.org/distributions/gradle-9.1.0-all.zip</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>Construire l&#x27;application web, puis la copier dans le projet <em>[Android]</em> :</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>npx ng build
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>npx cap sync android
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>ligne 1 : l&#x27;application web, dans <em>[dist/rdvmedecins_ionic/browser/]</em> ;</li>
+<li>ligne 2 : <strong><em>[cap sync]</em></strong> copie ce dossier (le <em>[webDir]</em> de <em>[capacitor.config.ts]</em>) dans <em>[android/app/src/main/assets/public/]</em>, ainsi que la configuration de <em>[Capacitor]</em> (<em>[capacitor.config.json]</em>), et met à jour les greffons. Avec <strong><em>[server.cleartext]</em></strong> à <em>[true]</em>, elle ajoute aussi l&#x27;attribut <strong><em>[android:usesCleartextTraffic=&quot;true&quot;]</em></strong> au manifeste des greffons, fusionné à la construction avec celui de l&#x27;application : les requêtes <em>[http://]</em> (non chiffrées) vers le serveur de développement sont permises.</li>
+</ul>
+<p>Il faut refaire ces deux commandes après chaque modification du code de l&#x27;application.</p>
+<ol>
+<li>La lancer :</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>npx cap run android
+</code></pre></div></td></tr></table></div>
+<p>La commande liste les appareils disponibles (les émulateurs créés dans <em>[Android Studio]</em>, les téléphones branchés en USB avec le « débogage USB » activé), construit l&#x27;application, l&#x27;installe sur l&#x27;appareil choisi, et la démarre. On peut aussi ouvrir le projet dans <em>[Android Studio]</em> (<strong><em>[npx cap open android]</em></strong>) et utiliser son bouton « Run ».</p>
+<p>Sur l&#x27;émulateur, l&#x27;application joint le serveur à l&#x27;adresse <em>[http://10.0.2.2:8080]</em> (cf. <em>[config.ts]</em>). Sur un vrai téléphone, relié au même réseau Wi-Fi que l&#x27;ordinateur, il faut lui donner l&#x27;adresse de l&#x27;ordinateur sur ce réseau (<strong><em>[ipconfig]</em></strong> sous <em>[Windows]</em>), à la construction :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>npx ng build --define "SERVEUR='http://192.168.1.20:8080'"
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>npx cap sync android
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>npx cap run android
+</code></pre></div></td></tr></table></div>
+<p>Le pare-feu de l&#x27;ordinateur doit laisser passer les connexions entrantes sur le port 8080.</p>
+<ol>
+<li>
+<p>La mettre au point. L&#x27;application est une page web, affichée par la <em>[WebView]</em> : les outils de développement de <em>[Chrome]</em>, sur l&#x27;ordinateur, peuvent l&#x27;inspecter. On ouvre l&#x27;adresse <strong><em>[chrome://inspect]</em></strong> : l&#x27;application de l&#x27;émulateur ou du téléphone y apparaît ; « inspect » ouvre la console, l&#x27;inspecteur d&#x27;éléments, et l&#x27;onglet « Réseau » (les requêtes vers l&#x27;API passant par <em>[CapacitorHttp]</em>, c&#x27;est-à-dire par le code natif, elles y sont moins visibles que sur le web : la console de <em>[Logcat]</em>, dans <em>[Android Studio]</em>, les affiche).</p>
+</li>
+<li>
+<p>Un fichier d&#x27;installation (APK) de mise au point. Dans <em>[Android Studio]</em> : menu « Build &gt; Generate App Bundles or APKs &gt; Generate APKs ». Ou, en ligne de commande, dans le dossier <em>[android/]</em> :</p>
+</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>cd android
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>./gradlew assembleDebug
+</code></pre></div></td></tr></table></div>
+<p>(sous <em>[Windows]</em> : <strong><em>[gradlew assembleDebug]</em></strong>). Le fichier est produit dans <em>[android/app/build/outputs/apk/debug/app-debug.apk]</em>. Il est signé avec la clé de débogage d&#x27;<em>[Android Studio]</em> : il suffit pour des essais. On l&#x27;installe sur un téléphone branché par <strong><em>[adb install app-debug.apk]</em></strong>, ou en copiant le fichier sur le téléphone et en l&#x27;ouvrant (<em>[Android]</em> demande alors d&#x27;autoriser l&#x27;installation d&#x27;applications « de sources inconnues »).</p>
+<ol>
+<li>
+<p>Une version de production, signée. Une application publiée doit être signée avec une clé propre au développeur, gardée précieusement (toutes les mises à jour devront être signées avec la même clé) :</p>
+</li>
+<li>
+<p>dans <em>[Android Studio]</em> : menu « Build &gt; Generate Signed App Bundle or APK... », qui permet aussi de créer la clé (un fichier « keystore », protégé par un mot de passe) ;</p>
+</li>
+<li>ou en ligne de commande : on crée la clé avec l&#x27;outil <em>[keytool]</em> du JDK, puis on construit la version signée :</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>keytool -genkey -v -keystore rdvmedecins.jks -keyalg RSA -keysize 2048 -validity 10000 -alias rdvmedecins
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>npx cap build android --keystorepath ../rdvmedecins.jks --keystorepass motdepasse --keystorealias rdvmedecins --keystorealiaspass motdepasse --androidreleasetype APK --signing-type apksigner
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>ligne 1 : crée la clé, dans le fichier <em>[rdvmedecins.jks]</em> (la commande demande le nom du développeur, son organisation...) ;</li>
+<li>ligne 2 : <strong><em>[cap build]</em></strong> lance la construction <em>[Gradle]</em> de la version « release » (<strong><em>[assembleRelease]</em></strong>), et signe le fichier produit avec cette clé (le chemin de la clé est relatif au dossier <em>[android/]</em>). <strong><em>[--signing-type apksigner]</em></strong> : la signature est faite par l&#x27;outil <em>[apksigner]</em> du SDK, dont le dossier, <em>[build-tools/&lt;version&gt;]</em>, doit être dans le PATH ; sans cette option, <em>[Capacitor]</em> utilise <em>[jarsigner]</em>, dont la signature n&#x27;est plus acceptée par les versions récentes d&#x27;<em>[Android]</em> pour un APK. <strong><em>[--androidreleasetype AAB]</em></strong> produirait un « Android App Bundle », le format qu&#x27;attend le <em>[Google Play Store]</em>.</li>
+</ul>
+<p>On peut aussi décrire la signature dans le fichier <em>[android/app/build.gradle]</em> (un bloc <em>[signingConfigs]</em>, cf. la documentation d&#x27;<em>[Android]</em> « Sign your app »), et lancer directement <strong><em>[./gradlew assembleRelease]</em></strong> (un APK, dans <em>[android/app/build/outputs/apk/release/]</em>) ou <strong><em>[./gradlew bundleRelease]</em></strong> (un App Bundle). Le mot de passe de la clé ne doit pas être écrit dans un fichier enregistré avec les sources.</p>
+<ol>
+<li>
+<p>Pour une vraie publication :</p>
+</li>
+<li>
+<p>le nom de l&#x27;application se règle dans <em>[capacitor.config.ts]</em> (<em>[appName]</em>) et dans <em>[android/app/src/main/res/values/strings.xml]</em> ; son icône, dans les dossiers <em>[android/app/src/main/res/mipmap-*/]</em> (l&#x27;outil <em>[@capacitor/assets]</em> les fabrique toutes à partir d&#x27;une seule image) ;</p>
+</li>
+<li>le serveur doit être en HTTPS (les mots de passe circulent) : on retire <strong><em>[server.cleartext]</em></strong> de <em>[capacitor.config.ts]</em>, et l&#x27;on construit l&#x27;application avec l&#x27;adresse publique du serveur (<strong><em>[--define &quot;SERVEUR=&#x27;https://rdvmedecins.exemple.fr&#x27;&quot;]</em></strong>).</li>
+</ol>
+<h2 id="123-le-serveur-en-production">12.3. <span style="color: #2e74b5">Le serveur en production</span></h2>
+<p>En production réelle, on n&#x27;oubliera pas le fichier <em>[.env]</em> du serveur :</p>
+<ul>
+<li>un <em>[JWT_SECRET]</em> long et aléatoire ;</li>
+<li><em>[CAPTCHA_TEST]</em> vide ;</li>
+<li><em>[COOKIE_SECURE=true]</em> si le site est servi en HTTPS (il doit l&#x27;être) : le cookie ne circule alors que sur des connexions chiffrées ;</li>
+<li><em>[TRUST_PROXY=true]</em> si le serveur est placé derrière un proxy (<em>[nginx]</em>...), pour que la limitation des tentatives voie l&#x27;adresse IP réelle des clients.</li>
+</ul>
+<p>Le serveur n&#x27;a aucune règle CORS à déclarer : sur le web, le client est servi par le serveur lui-même (même origine) ; sur <em>[Android]</em>, les requêtes partent du code natif (<em>[CapacitorHttp]</em>), auquel CORS ne s&#x27;applique pas.</p>
+<p>On lance alors le serveur compilé : <em>[npm run build]</em>, puis <em>[npm run start:prod]</em>.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Ce tutoriel, rédigé par l’IA d’Anthropic <strong>Claude</strong> à la demande de <strong>Serge Tahé</strong>, est mis à la disposition du public selon les termes de la
+        <em>licence Creative Commons Attribution – Pas d’utilisation commerciale –
+        ShareAlike 3.0 Unported</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

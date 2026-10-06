@@ -1,0 +1,1083 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Introduction étape par étape au framework mobile [Ionic]">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/ionic-etape-par-etape-oct-2026/mise-en-place-de-lenvironnement-de-travail.html">
+      
+      
+        <link rel="prev" href="introduction.html">
+      
+      
+        <link rel="next" href="premiers-pas-avec-ionic.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2. Mise en place de l'environnement de travail - Introduction étape par étape au framework mobile [Ionic]</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Introduction étape par étape au framework mobile [Ionic]";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-mise-en-place-de-lenvironnement-de-travail" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Introduction étape par étape au framework mobile [Ionic]" class="md-header__button md-logo" aria-label="Introduction étape par étape au framework mobile [Ionic]" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction étape par étape au framework mobile [Ionic]
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. Mise en place de l'environnement de travail
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/ionic-etape-par-etape-oct-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Introduction étape par étape au framework mobile [Ionic]" class="md-nav__button md-logo" aria-label="Introduction étape par étape au framework mobile [Ionic]" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Introduction étape par étape au framework mobile [Ionic]
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/ionic-etape-par-etape-oct-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Mise en place de l'environnement de travail
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="mise-en-place-de-lenvironnement-de-travail.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Mise en place de l'environnement de travail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-installer-les-outils" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Installer les outils
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-installation-du-client-ionic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Installation du client Ionic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-android-studio-et-les-outils-de-ligne-de-commande-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Android Studio et les outils de ligne de commande Android
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-preparer-un-emulateur-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Préparer un émulateur Android
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-preparer-le-telephone-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5. Préparer le téléphone Android
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="premiers-pas-avec-ionic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Premiers pas avec Ionic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="les-composants.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Les composants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="le-routage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Le routage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lasynchrone-et-letat-partage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. L'asynchrone et l'état partagé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="internationalisation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Internationalisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="le-serveur-rdvmedecins-une-boite-noire.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Le serveur RdvMedecins, une boîte noire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dialoguer-avec-le-serveur.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Dialoguer avec le serveur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion-intermediaire.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Conclusion intermédiaire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="etude-de-cas--le-client-ionic-de-lapplication-rdvmedecins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Étude de cas : le client Ionic de l'application RdvMedecins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deploiement.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Déploiement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Conclusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="annexes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Annexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2-mise-en-place-de-lenvironnement-de-travail">2. <span style="color: #2e74b5">Mise en place de l&#x27;environnement de travail</span></h1>
+<h2 id="21-installer-les-outils">2.1. <span style="color: #2e74b5">Installer les outils</span></h2>
+<ol>
+<li><strong>Node.js</strong> : télécharger et installer la version 24 (LTS) depuis <a href="https://nodejs.org/">nodejs.org</a>. <em>[Angular CLI]</em> 22 exige <em>[Node.js]</em> 22.22.3 (ou une version 22 plus récente), 24.15 ou plus, ou 26 et au-delà : une version plus ancienne refuse de lancer la commande <em>[ng]</em>. L&#x27;installateur installe aussi <em>[npm]</em>, le gestionnaire de paquets de <em>[Node.js]</em>. Vérifier l&#x27;installation dans un terminal :</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>node --version
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>npm --version
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>
+<p><strong>Visual Studio Code</strong> (<em>[VS Code]</em>) : téléchargeable gratuitement sur <a href="https://code.visualstudio.com/">code.visualstudio.com</a>. Installer les extensions <em>[Angular Language Service]</em> (la complétion et la vérification dans les gabarits <em>[HTML]</em>) et <em>[Ionic]</em> (les commandes d&#x27;<em>[Ionic]</em> et de <em>[Capacitor]</em> dans l&#x27;éditeur). Le support de <em>[TypeScript]</em> est déjà intégré à <em>[VS Code]</em>.</p>
+</li>
+<li>
+<p><strong>Chrome</strong> : le navigateur dans lequel on développe l&#x27;application (<a href="https://www.google.com/chrome/">google.com/chrome</a>). Ses outils de développement (F12) affichent l&#x27;application à la taille d&#x27;un téléphone, et permettent aussi de déboguer l&#x27;application installée sur le téléphone (cf. annexes).</p>
+</li>
+<li>
+<p><strong>MySQL 8</strong> (ou <strong>MariaDB</strong>) : nécessaire au seul serveur JSON. L&#x27;installer par exemple via <a href="https://laragon.org/">Laragon</a> (sous <em>[Windows]</em>), <a href="https://www.apachefriends.org/">XAMPP</a> ou directement <a href="https://dev.mysql.com/downloads/mysql/">MySQL Community Server</a>. Un outil d&#x27;administration graphique (<em>[HeidiSQL]</em>, <em>[phpMyAdmin]</em>, <em>[MySQL Workbench]</em>, <em>[DBeaver]</em>...) facilite la suite. Ce cours utilise <em>[Laragon]</em>.</p>
+</li>
+</ol>
+<h2 id="22-installation-du-client-ionic">2.2. <span style="color: #2e74b5">Installation du client Ionic</span></h2>
+<p>Avec <em>[Flutter]</em>, il fallait installer un SDK : le framework, le langage <em>[Dart]</em> et leurs outils, communs à tous les projets. Avec <em>[Ionic]</em>, il n&#x27;y a pas de SDK à installer : <em>[Angular]</em>, <em>[Ionic]</em>, <em>[Capacitor]</em>, le compilateur <em>[TypeScript]</em> et leurs outils en ligne de commande (<em>[ng]</em>, <em>[cap]</em>) sont de simples paquets <em>[npm]</em>, déclarés dans le fichier <em>[package.json]</em> de chaque projet et installés dans son dossier <em>[node_modules/]</em>. Chaque projet a ainsi ses propres versions, et deux projets peuvent utiliser des versions différentes d&#x27;<em>[Angular]</em> sans se gêner.</p>
+<p>Installer le client <em>[Ionic]</em> d&#x27;un projet, c&#x27;est donc installer ses paquets. Dans <em>[VS Code]</em>, ouvrir le dossier du projet (menu Fichier / Ouvrir le dossier, par exemple le dossier <em>[exemples_ionic]</em>), puis une console (menu Terminal / Nouveau terminal), et taper :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>npm install
+</code></pre></div></td></tr></table></div>
+<p>La commande télécharge les paquets décrits par <em>[package.json]</em> (et leurs propres dépendances : plusieurs centaines de paquets, quelques centaines de mégaoctets), dans les versions exactes notées dans <em>[package-lock.json]</em>. Elle n&#x27;est à refaire que si l&#x27;on ajoute un paquet ou si l&#x27;on change de version.</p>
+<p>Les outils du projet se lancent ensuite par <strong><em>[npx]</em></strong>, qui exécute la commande d&#x27;un paquet installé dans le projet (sans <strong><em>[npx]</em></strong>, la console chercherait une commande installée pour tout l&#x27;ordinateur). La commande <strong><em>[npx ng version]</em></strong> vérifie l&#x27;installation d&#x27;<em>[Angular]</em> :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>npx ng version
+</code></pre></div></td></tr></table></div>
+<p>On obtient un résultat de ce genre (ici sous <em>[Linux]</em> ; sous <em>[Windows]</em>, la ligne <em>[Operating System]</em> affiche <em>[win32 x64]</em>) :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>     _                      _                 ____ _     ___
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a> /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>                |___/
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>Angular CLI       : 22.2.1
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>Angular           : 22.2.1
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>Node.js           : 24.21.0
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>Package Manager   : npm 10.9.4
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>Operating System  : linux x64
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>┌───────────────────────────┬───────────────────┬───────────────────┐
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>│ Package                   │ Installed Version │ Requested Version │
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>├───────────────────────────┼───────────────────┼───────────────────┤
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>│ @angular/build            │ 22.2.1            │ ^22.2.1           │
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>│ @angular/cli              │ 22.2.1            │ ^22.2.1           │
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>│ @angular/common           │ 22.2.1            │ ^22.2.0           │
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a>│ @angular/compiler         │ 22.2.1            │ ^22.2.0           │
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>│ @angular/compiler-cli     │ 22.2.1            │ ^22.2.0           │
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>│ @angular/core             │ 22.2.1            │ ^22.2.0           │
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>│ @angular/forms            │ 22.2.1            │ ^22.2.0           │
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>│ @angular/platform-browser │ 22.2.1            │ ^22.2.0           │
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a>│ @angular/router           │ 22.2.1            │ ^22.2.0           │
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a>│ rxjs                      │ 7.8.2             │ ~7.8.0            │
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a>│ typescript                │ 6.0.3             │ ~6.0.2            │
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a>└───────────────────────────┴───────────────────┴───────────────────┘
+</code></pre></div></td></tr></table></div>
+<p>La colonne <em>[Requested Version]</em> reprend les versions demandées par <em>[package.json]</em> ; la colonne <em>[Installed Version]</em>, celles qu&#x27;<em>[npm]</em> a effectivement installées. Celles d&#x27;<em>[Ionic]</em> et de <em>[Capacitor]</em> ne figurent pas dans ce tableau, réservé aux paquets d&#x27;<em>[Angular]</em> ; la commande <strong><em>[npm ls --depth=0]</em></strong> les liste toutes. La commande <strong><em>[npx cap doctor]</em></strong> est le pendant, pour <em>[Capacitor]</em>, de <em>[flutter doctor]</em> :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>npx cap doctor
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>💊   Capacitor Doctor  💊
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>Latest Dependencies:
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>  @capacitor/cli: 8.5.2
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>  @capacitor/core: 8.5.2
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>  @capacitor/android: 8.5.2
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>  @capacitor/ios: 8.5.2
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>Installed Dependencies:
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>  @capacitor/ios: not installed
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>  @capacitor/cli: 8.5.2
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>  @capacitor/core: 8.5.2
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>  @capacitor/android: 8.5.2
+</code></pre></div></td></tr></table></div>
+<p><em>[Capacitor]</em> compare les versions installées dans le projet aux dernières versions publiées. Le paquet <em>[@capacitor/ios]</em> n&#x27;est pas installé : ce cours ne vise que <em>[Android]</em> (une application <em>[iOS]</em> se construit sur un <em>[Mac]</em>, avec <em>[Xcode]</em>). Une fois le projet <em>[Android]</em> créé (<strong><em>[npx cap add android]</em></strong>, cf. exemple 01), la commande vérifie aussi ce projet.</p>
+<p>Il reste à lancer l&#x27;application, dans la même console :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>npm start
+</code></pre></div></td></tr></table></div>
+<p>puis à ouvrir l&#x27;adresse <em>[http://localhost:8100]</em> dans <em>[Chrome]</em> : on y voit le menu des 25 exemples (cf. exemple 01). Il n&#x27;y a pas, comme avec <em>[Flutter]</em>, d&#x27;appareil à choisir : dans le navigateur, l&#x27;application est servie par <em>[ng serve]</em> ; sur <em>[Android]</em>, elle est construite puis installée par <em>[Capacitor]</em>.</p>
+<p><strong>L&#x27;outil</strong> <strong><em>[@ionic/cli]</em></strong> (facultatif). L&#x27;équipe d&#x27;<em>[Ionic]</em> publie aussi un outil en ligne de commande, qu&#x27;on installe pour tout l&#x27;ordinateur :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>npm install -g @ionic/cli
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>ionic start
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>ionic serve
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>ionic capacitor run android -l --external
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>ligne 1 : installe la commande <em>[ionic]</em> ;</li>
+<li>ligne 2 : crée un nouveau projet <em>[Ionic]</em> + <em>[Angular]</em> + <em>[Capacitor]</em> à partir d&#x27;un modèle (<em>[blank]</em> : une page vide, <em>[tabs]</em> : des onglets, <em>[sidemenu]</em> : un menu latéral), en posant quelques questions ;</li>
+<li>ligne 3 : lance le serveur de développement (il appelle lui-même <em>[ng serve]</em>) ;</li>
+<li>ligne 4 : construit l&#x27;application, l&#x27;installe sur un appareil <em>[Android]</em> et la recharge à chaque modification du code (<em>[-l]</em>, « live reload ») ; <em>[--external]</em> fait écouter le serveur de développement sur l&#x27;adresse de l&#x27;ordinateur dans le réseau local, que le téléphone peut joindre.</li>
+</ul>
+<p>Ce n&#x27;est qu&#x27;une commodité : <em>[ionic]</em> ne fait qu&#x27;enchaîner les commandes <em>[ng]</em> et <em>[cap]</em>, et il lui faut, dans le projet, un fichier <em>[ionic.config.json]</em> (que crée <em>[ionic start]</em>, ou <em>[ionic init]</em> pour un projet existant). Les projets de ce cours n&#x27;en ont pas : ils ont été créés avec <em>[ng new]</em> (cf. exemple 01), et l&#x27;on utilise directement <em>[ng]</em> et <em>[cap]</em>, qui font partie du projet. C&#x27;est la façon la plus transparente de voir ce qui se passe, et celle qui ne dépend d&#x27;aucun outil installé sur l&#x27;ordinateur.</p>
+<p>Nous décrivons maintenant comment installer les outils pour le développement <em>[Android]</em>.</p>
+<h2 id="23-android-studio-et-les-outils-de-ligne-de-commande-android">2.3. <span style="color: #2e74b5">Android Studio et les outils de ligne de commande Android</span></h2>
+<p>La cible mobile de ce cours est un téléphone <em>[Android]</em>. Pour construire l&#x27;application <em>[Android]</em> et l&#x27;installer sur ce téléphone, <em>[Capacitor]</em> a besoin du SDK <em>[Android]</em> et d&#x27;un JDK (le compilateur <em>[Java]</em>, dont se sert l&#x27;outil de construction <em>[Gradle]</em>), qui s&#x27;installent avec <em>[Android Studio]</em>, l&#x27;environnement de développement de <em>[Google]</em>. <em>[Android Studio]</em> n&#x27;est pas utilisé pour écrire le code (l&#x27;éditeur reste <em>[VS Code]</em>) : il sert ici à installer et à mettre à jour le SDK <em>[Android]</em>, à créer des émulateurs et, à l&#x27;occasion, à ouvrir le projet <em>[Android]</em> fabriqué par <em>[Capacitor]</em> (<strong><em>[npx cap open android]</em></strong>).</p>
+<ol>
+<li>
+<p><strong><em>[Android Studio]</em></strong> : le télécharger gratuitement à l&#x27;adresse <a href="https://developer.android.com/studio">developer.android.com/studio</a> puis l&#x27;installer. Au premier lancement, l&#x27;assistant propose une installation standard : l&#x27;accepter, il télécharge le SDK <em>[Android]</em>.</p>
+</li>
+<li>
+<p>Ouvrir le <strong><em>[SDK Manager]</em></strong> d&#x27;<em>[Android Studio]</em> (menu <em>[Tools / SDK Manager]</em> lorsqu&#x27;un projet est ouvert, ou <em>[More Actions / SDK Manager]</em> depuis l&#x27;écran d&#x27;accueil) : c&#x27;est lui qui installe et met à jour les composants du SDK <em>[Android]</em>.</p>
+</li>
+<li>
+<p>onglet <em>[SDK Platforms]</em> : vérifier qu&#x27;une plate-forme <em>[Android]</em> récente est installée. <em>[Capacitor]</em> 8 compile les applications pour l&#x27;API 36 (<em>[Android]</em> 16) ;</p>
+</li>
+<li>
+<p>onglet <em>[SDK Tools]</em> : cocher <em>[Android SDK Build-Tools]</em>, <em>[Android SDK Platform-Tools]</em> (qui contient <em>[adb]</em>, l&#x27;outil qui relie l&#x27;ordinateur à l&#x27;appareil), <em>[Android Emulator]</em> (si l&#x27;on veut tester sur un émulateur) et <em>[Android SDK Command-line Tools (latest)]</em> (dont l&#x27;outil <em>[sdkmanager]</em>), puis cliquer sur <em>[Apply]</em>.</p>
+</li>
+<li>
+<p>Accepter les licences du SDK <em>[Android]</em> : <em>[Android Studio]</em> les fait accepter à chaque installation d&#x27;un composant. Si la construction de l&#x27;application échoue plus tard sur une licence non acceptée, on les accepte toutes avec l&#x27;outil <em>[sdkmanager]</em> des <em>[Android SDK Command-line Tools]</em>, en répondant <em>[y]</em> à chaque question, jusqu&#x27;au message « All SDK package licenses accepted. » (sous <em>[Windows]</em>, dans <em>[PowerShell]</em>) :</p>
+</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>&amp; "$env:LOCALAPPDATA\Android\Sdk\cmdline-tools\latest\bin\sdkmanager.bat" --licenses
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>
+<p>Le JDK : <em>[Capacitor]</em> 8 demande un JDK 21 ou plus récent. Inutile d&#x27;en installer un : <em>[Android Studio]</em> est livré avec le sien, le <em>[JBR]</em> (« JetBrains Runtime »), dans son sous-dossier <em>[jbr]</em>. Dans les versions récentes d&#x27;<em>[Android Studio]</em>, c&#x27;est un <em>[Java]</em> 25 : il demande une petite retouche du projet <em>[Android]</em> fabriqué par <em>[Capacitor]</em> (passer à <em>[Gradle]</em> 9.1), indiquée à l&#x27;exemple 01.</p>
+</li>
+<li>
+<p>Les variables d&#x27;environnement. <em>[Capacitor]</em> (<strong><em>[npx cap run android]</em></strong>) lance lui-même la construction <em>[Gradle]</em> et l&#x27;outil <em>[adb]</em> ; il doit savoir où sont le SDK et le JDK. Sous <em>[Windows]</em>, dans Paramètres / Système / Informations système / Paramètres avancés du système / Variables d&#x27;environnement, créer deux variables de l&#x27;utilisateur :</p>
+</li>
+<li>
+<p><em>[ANDROID_HOME]</em> : le dossier du SDK <em>[Android]</em>, par défaut <em>[C:\Users\&lt;nom&gt;\AppData\Local\Android\Sdk]</em> (le <em>[SDK Manager]</em> l&#x27;affiche en haut de sa fenêtre, <em>[Android SDK Location]</em>) ;</p>
+</li>
+<li><em>[JAVA_HOME]</em> : le dossier du JDK d&#x27;<em>[Android Studio]</em>, par défaut <em>[C:\Program Files\Android\Android Studio\jbr]</em>.</li>
+</ol>
+<p>Ajouter aussi à la variable <em>[Path]</em> le dossier <em>[%ANDROID_HOME%\platform-tools]</em>, pour pouvoir taper <em>[adb]</em> dans une console. Si <em>[Android Studio]</em> n&#x27;est pas installé à l&#x27;emplacement par défaut, la commande <strong><em>[npx cap open android]</em></strong> demande en plus la variable <em>[CAPACITOR_ANDROID_STUDIO_PATH]</em> : le chemin du programme <em>[studio64.exe]</em>. Les nouvelles variables ne sont vues que par les consoles ouvertes APRÈS leur création : il faut relancer <em>[VS Code]</em>. On vérifie dans une nouvelle console :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>adb version
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>&amp; "$env:JAVA_HOME\bin\java" -version
+</code></pre></div></td></tr></table></div>
+<h2 id="24-preparer-un-emulateur-android">2.4. <span style="color: #2e74b5">Préparer un émulateur Android</span></h2>
+<p>À défaut de téléphone, on peut tester l&#x27;application sur un émulateur <em>[Android]</em> : un téléphone virtuel qui s&#x27;exécute dans une fenêtre de l&#x27;ordinateur. <em>[Android Studio]</em> installe le programme <em>[Android Emulator]</em> (s&#x27;il a été coché dans le <em>[SDK Manager]</em>, cf. ci-dessus) mais pas d&#x27;appareil virtuel prêt à l&#x27;emploi : il faut en créer un.</p>
+<ul>
+<li><em>[Prérequis]</em> : la virtualisation doit être activée dans le <em>[BIOS]</em> de l&#x27;ordinateur et, sous <em>[Windows]</em>, la fonctionnalité <em>[Plateforme de l&#x27;hyperviseur Windows]</em> doit être cochée (<em>[Panneau de configuration / Programmes / Activer ou désactiver des fonctionnalités Windows]</em>), ce qui demande un redémarrage. Sans cela, l&#x27;émulateur ne démarre pas ou reste très lent ;</li>
+<li>ouvrir le <em>[Device Manager]</em> d&#x27;<em>[Android Studio]</em> : <em>[More Actions / Virtual Device Manager]</em> depuis l&#x27;écran d&#x27;accueil, ou <em>[Tools / Device Manager]</em> lorsqu&#x27;un projet est ouvert (selon la version : <em>[View / Tool Windows / Device Manager]</em>) ;</li>
+<li>cliquer sur <em>[Create Device]</em>, choisir un modèle (par exemple <em>[Pixel 8]</em>) puis <em>[Next]</em>. Choisir une image système <em>[Android]</em> récente pour le processeur <em>[x86_64]</em> et la télécharger avec le lien <em>[Download]</em> situé à côté, puis <em>[Next]</em> et <em>[Finish]</em> ;</li>
+<li>démarrer l&#x27;émulateur avec le bouton <em>[Play]</em> du <em>[Device Manager]</em> ;</li>
+<li>attendre que l&#x27;écran d&#x27;accueil d&#x27;<em>[Android]</em> soit affiché dans la fenêtre de l&#x27;émulateur : le premier démarrage peut durer plusieurs minutes.</li>
+</ul>
+<p>On vérifie ensuite que l&#x27;ordinateur voit l&#x27;émulateur. Deux commandes le permettent :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>adb devices
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>npx cap run android --list
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>ligne 1 : <em>[adb]</em> liste les appareils reliés à l&#x27;ordinateur, un par ligne : leur identifiant (par exemple <em>[emulator-5554]</em> pour le premier émulateur) suivi de leur état, qui doit être <em>[device]</em> ;</li>
+<li>ligne 2 : dans le dossier d&#x27;un projet <em>[Capacitor]</em> (<em>[exemples_ionic]</em>, par exemple), <em>[Capacitor]</em> liste les appareils sur lesquels il peut installer l&#x27;application : les appareils branchés et démarrés, mais aussi les émulateurs créés dans <em>[Android Studio]</em>, même arrêtés (il sait les démarrer). C&#x27;est le pendant de <em>[flutter devices]</em>.</li>
+</ul>
+<p><strong><em>[Remarque]</em></strong> : si <em>[adb devices]</em> affiche l&#x27;émulateur avec l&#x27;état <em>[offline]</em>, l&#x27;émulateur n&#x27;a pas fini de démarrer, ou <em>[adb]</em> est dans un état incohérent. Essayer dans l&#x27;ordre : (1) attendre l&#x27;écran d&#x27;accueil puis relancer la commande ; (2) redémarrer <em>[adb]</em> avec les trois commandes suivantes (sous <em>[Windows]</em>, dans <em>[PowerShell]</em>), la dernière devant afficher <em>[device]</em> et non <em>[offline]</em> ; (3) dans le <em>[Device Manager]</em>, menu <em>[⋮]</em> de l&#x27;appareil, choisir <em>[Cold Boot Now]</em>, voire <em>[Wipe Data]</em> en dernier recours.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>&amp; "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" kill-server
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>&amp; "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" start-server
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>&amp; "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" devices
+</code></pre></div></td></tr></table></div>
+<p>Si le problème persiste, vérifier avec <em>[where.exe adb]</em> qu&#x27;aucun autre <em>[adb]</em>, d&#x27;une version différente, ne se trouve dans le <em>[Path]</em> : deux versions d&#x27;<em>[adb]</em> qui se disputent la connexion provoquent ce symptôme.</p>
+<p>Une fois l&#x27;émulateur reconnu, l&#x27;application s&#x27;y installe et s&#x27;y lance par la commande suivante, dans le dossier du projet, après <strong><em>[npx ng build]</em></strong> et <strong><em>[npx cap sync android]</em></strong> (cf. exemple 01) ; <em>[--target]</em> désigne l&#x27;appareil par son identifiant, sans quoi la commande demande lequel choisir :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>npx cap run android --target emulator-5554
+</code></pre></div></td></tr></table></div>
+<p>Sur l&#x27;émulateur, l&#x27;ordinateur qui le fait tourner a l&#x27;adresse <em>[10.0.2.2]</em> : c&#x27;est là que l&#x27;application cherchera le serveur JSON (cf. exemple 22).</p>
+<h2 id="25-preparer-le-telephone-android">2.5. <span style="color: #2e74b5">Préparer le téléphone Android</span></h2>
+<p>Pour exécuter l&#x27;application sur un vrai téléphone <em>[Android]</em>, celui-ci doit accepter d&#x27;être piloté depuis l&#x27;ordinateur :</p>
+<ul>
+<li>activer les options pour les développeurs : ouvrir <em>[Paramètres / À propos du téléphone]</em> puis appuyer plusieurs fois (7 en général) sur <em>[Numéro de build]</em> jusqu&#x27;à ce que le téléphone indique que vous êtes développeur. Les intitulés exacts varient selon le fabricant ;</li>
+<li>activer le <em>[Débogage USB]</em> dans les <em>[Options pour les développeurs]</em> (menu ajouté par l&#x27;étape précédente) ;</li>
+<li>brancher le téléphone à l&#x27;ordinateur avec un câble USB qui transfère des données (pas seulement de la charge) et accepter, sur le téléphone, la demande d&#x27;autorisation du débogage USB. Sous <em>[Windows]</em>, si le téléphone n&#x27;est pas reconnu, installer le pilote USB de son fabricant (« OEM USB drivers », cf. <a href="https://developer.android.com/studio/run/oem-usb">developer.android.com/studio/run/oem-usb</a>) ;</li>
+<li>vérifier que l&#x27;ordinateur voit le téléphone : il doit apparaître, avec l&#x27;état <em>[device]</em>, dans la liste affichée par <strong><em>[adb devices]</em></strong> (l&#x27;état <em>[unauthorized]</em> signifie que la demande d&#x27;autorisation n&#x27;a pas été acceptée sur le téléphone), et dans celle de <strong><em>[npx cap run android --list]</em></strong>.</li>
+</ul>
+<p>Le téléphone accèdera au serveur <em>[NestJS]</em> par l&#x27;adresse IP de l&#x27;ordinateur sur le réseau local (et non par <em>[localhost]</em>, qui, pour lui, est le téléphone lui-même) : ce réglage est décrit à l&#x27;exemple 22 et au chapitre « Déploiement ».</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Ce tutoriel, rédigé par l’IA d’Anthropic <strong>Claude</strong> à la demande de <strong>Serge Tahé</strong>, est mis à la disposition du public selon les termes de la
+        <em>licence Creative Commons Attribution – Pas d’utilisation commerciale –
+        ShareAlike 3.0 Unported</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

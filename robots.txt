@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stahe.github.io/ionic-etape-par-etape-oct-2026/sitemap.xml
